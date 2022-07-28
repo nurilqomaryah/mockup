@@ -1,0 +1,84 @@
+@font-face{
+	font-family: headerCustomFont;
+	src: url("../../../font/KasseFLF.ttf");
+}
+
+@font-face{
+	font-family: customfont;
+	src: url(../fonts/Pink%20Bunny%202.ttf);
+}
+
+#custom-font{
+	font-family: headerCustomFont;
+	font-size: 30px;
+}
+
+#headerfont{
+	font-family: customfont;
+	font-size:20px;
+}
+
+#content:before{
+	content: "";
+	background: url(../../../images/menu1.jpg) no-repeat;
+	background-position: center;
+	background-size: cover;
+	display: block;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	
+  	z-index: -1;
+}
+
+#content{
+	z-index: 0;
+}
+
+.margin-atas{
+	margin-top: 10% !important;
+}
+
+.margin-kiri{
+	margin-left: 25% !important;
+}
+
+.jarak{
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+
+.no-border-radius{
+	border-radius: 0 0 0 0 !important;
+}
+
+.zero-bottom-radius{
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+.more-top-radius{
+	border-top-left-radius:5px !important;
+	border-top-right-radius:5px !important;
+}
+
+.grey-font{
+	color: grey;
+}
+
+.normalisation{
+	margin: 0 0 0 0 !important;
+}
+
+.inverted-dropdown{
+	background: black !important;
+}
+
+.item{
+	padding-right: 5% !important;
+	padding-left: 5% !important;
+}
+
+.white-font{
+	color: white !important;
+}

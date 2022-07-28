@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
+Route::resource('logins','App\Http\Controllers\Auth\LoginController');
+Route::post('login/submit',[App\Http\Controllers\Auth\LoginController::class,'onSubmit'])->name('login.submit');
+
+Route::get('dashboardadmin',[\App\Http\Controllers\Admin\DashboardCtrl::class, 'dashadmin'])->name('dashboardadmin');
