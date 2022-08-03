@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="background-image: {{url('/images/PC.jpg')}} !important;">
         <div class="row justify-content-center" style="margin-top: 3em;">
                 <img class="img-responsive" src="{{url('/images/BPKP_Logo.png')}}" width="15%">
         </div>
     <div class="row justify-content-center">
         <div class="col-md-8 align-content-center" style="margin-top: 3em;">
             <div class="card">
-                <div class="card-header text-center">{{ __('MONITORING CAPAIAN KINERJA DAN KEUANGAN PUSLITBANGWAS') }}</div>
+                <div class="card-header text-center">{{ __('Silakan Anda melakukan Login dahulu!') }}</div>
                 <div class="card-body">
                     @if (session('error'))
                         <div class="alert alert-danger">
@@ -20,24 +20,33 @@
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right fas fa-fw fa-tachometer-alt"></label>
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username" autofocus>
-                                @error('username')
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username" autofocus>
+                                    @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
-
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
-                                @error('password')
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                                    @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row mb-0">

@@ -3,6 +3,10 @@
     src: url('../fonts/charter/ttf/CharterRegular.ttf');
 }
 
+body {
+    background-image: url('/images/PC.jpg') !important;
+}
+
 h1, h2, h3, h4, h5, p, span, a {
     font-family: charter, 'Martel Sans', sans-serif;
 }
