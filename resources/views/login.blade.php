@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.log-in')
 
 @section('content')
-    <div class="container" style="background-image: {{url('/images/PC.jpg')}} !important;">
-        <div class="row justify-content-center" style="margin-top: 3em;">
-                <img class="img-responsive" src="{{url('/images/BPKP_Logo.png')}}" width="15%">
-        </div>
-    <div class="row justify-content-center">
-        <div class="col-md-8 align-content-center" style="margin-top: 3em;">
+    <div class="container" style="background-image: {{url('images/PC.jpg')}} !important;">
+{{--        <div class="row justify-content-end" style="margin-top: 3em;">--}}
+{{--                <img class="img-responsive" src="{{url('/images/BPKP_Logo.png')}}" width="15%">--}}
+{{--        </div>--}}
+    <div class="row justify-content-end">
+        <div class="col-md-6 align-content-center" style="margin-top: 13em; margin-right: 7em;">
             <div class="card">
-                <div class="card-header text-center">{{ __('Silakan Anda melakukan Login dahulu!') }}</div>
+                <div class="card-header text-center">{{ __('Silakan Login menggunakan Akun Warga') }}</div>
                 <div class="card-body">
                     @if (session('error'))
                         <div class="alert alert-danger">
@@ -18,7 +18,7 @@
                     <form method="POST" action="{{ route('login.submit')}}">
                         @csrf
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right fas fa-fw fa-tachometer-alt"></label>
+                            <label for="username" class="col-md-3 col-form-label text-md-right fas fa-fw fa-tachometer-alt"></label>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
+                            <label for="password" class="col-md-3 col-form-label text-md-right">{{ __('') }}</label>
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-4">
+                            <div class="col-md-8 offset-3">
                                 <button type="submit" class="btn btn-primary col-md-9">
                                     {{ __('Login') }}
                                 </button>
