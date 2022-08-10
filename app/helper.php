@@ -6,8 +6,7 @@ if(!function_exists('count_data_database'))
 {
     function count_data_database($tablename)
     {
-        $query = \Illuminate\Support\Facades\DB::select("SELECT COUNT(ID) as TOTAL_DATA FROM ".$tablename);
-        return $query[0]->TOTAL_DATA;
+        return \Illuminate\Support\Facades\DB::table($tablename)->count();
     }
 }
 

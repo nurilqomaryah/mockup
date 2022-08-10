@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12">
         <h2 class="page-header">
-            Dashboard
+            Halaman Sync Data
         </h2>
     </div>
 </div>
@@ -73,7 +73,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#datacategory').DataTable();
+        $('#syncdata').DataTable();
     } );
 </script>
 @endsection

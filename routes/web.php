@@ -20,5 +20,13 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::resource('logins','LoginController');
 Route::post('login/submit',[LoginController::class,'onSubmit'])->name('login.submit');
 
-Route::get('dashboardadmin',[MockupController::class, 'viewDashboard'])->name('dashboardadmin');
-Route::get('syncdata',[MockupController::class, 'bagipagu'])->name('syncdata');
+Route::get('syncadmin',[MockupController::class, 'viewSyncData'])->name('syncadmin');
+Route::get('syncdata',[MockupController::class,'syncData'])->name('syncdata');
+Route::get('bagipagu',[MockupController::class, 'bagipagu']);
+Route::get('costsheet',[MockupController::class, 'costsheet']);
+Route::get('pagu',[MockupController::class, 'pagu']);
+Route::get('surattugas',[MockupController::class, 'surattugas']);
+Route::get('gaji',[MockupController::class, 'gaji']);
+Route::get('gajidetail',[MockupController::class, 'gajidetail']);
+Route::get('permintaanpbj',[MockupController::class, 'permintaanpbj']);
+Route::get('simast',[MockupController::class, 'simast']);
