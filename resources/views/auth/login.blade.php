@@ -5,14 +5,22 @@
 {{--        <div class="row justify-content-end" style="margin-top: 3em;">--}}
 {{--                <img class="img-responsive" src="{{url('/images/BPKP_Logo.png')}}" width="15%">--}}
 {{--        </div>--}}
-    <div class="row justify-content-end">
-        <div class="col-md-6 align-content-center" style="margin-top: 13em; margin-right: 7em;">
-            <div class="card">
-                <div class="card-header text-center">{{ __('Silakan Login menggunakan Akun Warga') }}</div>
+    <div class="row">
+        <div class="col-md-8 offset-4" style="margin-top: 12em; margin-right: 7em;">
+            <h2 style="text-align: center;">APLIKASI MONITORING CAPAIAN </h2>
+            <h2 style="text-align: center;">KINERJA DAN KEUANGAN PUSLITBANGWAS </h2>
+            <h2 style="text-align: center;">(MOCKUP) </h2>
+            <div class="card" style="margin-top: 3em;">
+                <div class="card-header text-center">{{ __('Silakan melakukan Login terlebih dahulu') }}</div>
                 <div class="card-body">
                     @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
+                        </div>
+                    @endif
+                    @if(session('success'))
+                        <div class="alert alert-primary">
+                            {{ session('success') }}
                         </div>
                     @endif
                     <form method="POST" action="{{ route('login.submit')}}">
@@ -51,9 +59,14 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-3">
-                                <button type="submit" class="btn btn-primary col-md-9">
+                                <button type="submit" class="btn btn-primary col-md-4"><i class="fa fa-lock"></i>
                                     {{ __('Login') }}
-                                </button>
+                                </button> &nbsp; &nbsp;
+                                <a href="{{ route('register') }}">
+                                    <button type="button" class="btn btn-warning col-md-4"><i class="fa fa-user"></i>
+                                        {{ __('Register') }}
+                                    </button>
+                                </a>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

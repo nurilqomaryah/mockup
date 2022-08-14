@@ -6,7 +6,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown no-arrow">
-            <a class="dropdown-item" href="{{ route('login') }}">
+            <a class="dropdown-item" href="{{ route('logout') }}">
                 <i class="fas fa-power-off fa-sm fa-fw mr-2 text-gray-400"></i>
                 Logout
             </a>

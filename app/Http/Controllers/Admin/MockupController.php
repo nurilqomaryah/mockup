@@ -46,7 +46,11 @@ class MockupController extends Controller
             ->route('syncadmin');
     }
 
-    //Done
+    public function viewDashboard(){
+
+        return View::make('dashboard/dash');
+    }
+
     public function bagipagu()
     {
         // Ambil data dari BISMA
@@ -79,7 +83,6 @@ class MockupController extends Controller
             ->route('syncadmin');
     }
 
-    //Done
     public function costsheet()
     {
         // Ambil data dari BISMA
@@ -112,7 +115,7 @@ class MockupController extends Controller
             ->route('syncadmin');
     }
 
-    //
+    
     public function pagu()
     {
         // Ambil data dari BISMA

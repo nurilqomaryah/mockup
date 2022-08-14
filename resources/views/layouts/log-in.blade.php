@@ -21,7 +21,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         .bg{
-            background: url('images/PC.jpg');
+            background: url('images/back_tanpajudul.jpg');
             background-color: transparent;
             height: 100%;
             background-repeat: no-repeat;
