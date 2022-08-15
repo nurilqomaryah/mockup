@@ -2,13 +2,11 @@
     <head>
         <title>MOCKUP</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/templatecrud/sb-admin-2.min.css') }}"/>
-{{--        <link rel="stylesheet" type="text/css" href="{{ asset('css/templatecrud/bootstrap.css') }}"/>--}}
         <link rel="stylesheet" type="text/css" href="{{ asset('css/templatecrud/custom-styles.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('js/templatecrud/dataTables/dataTables.bootstrap.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('js/templatecrud/morris/morris-0.4.3.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
         <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-{{--        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />--}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"/>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap4.min.css"/>
         <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
@@ -19,7 +17,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 @include('layouts.top-menu')
-                <div class="container">
+                <div class="container-fluid">
                     @yield('main')
                 </div>
             </div>
