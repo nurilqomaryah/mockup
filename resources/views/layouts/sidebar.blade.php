@@ -14,7 +14,7 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-    <!-- Nav Item - Dashboard -->
+    <!-- Nav Item - DashboardController -->
     @if(\Illuminate\Support\Facades\Session::get('role') == 1)
     <li class="nav-item">
         <a class="nav-link" href="{{url('dashboardadmin')}}">

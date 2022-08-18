@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\MockupController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -30,7 +31,7 @@ Route::controller(RegisterController::class)
 
 Route::get('logout', [LogoutController::class,'onSubmitLogout'])->name('logout');
 
-Route::get('dashboard',[MockupController::class, 'viewDashboard'])->name('dashboard');
+Route::get('dashboard',[DashboardController::class, 'viewDashboard'])->name('dashboard');
 // Route::get('syncadmin',[MockupController::class, 'viewSyncData'])->name('syncadmin');
 Route::get('syncdata',[MockupController::class,'syncData'])->name('syncdata');
 Route::get('bagipagu',[MockupController::class, 'bagipagu']);
