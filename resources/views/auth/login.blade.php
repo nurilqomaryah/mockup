@@ -59,11 +59,11 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-3">
-                                <button type="submit" class="btn btn-primary col-md-4"><i class="fa fa-lock"></i>
+                                <button type="submit" class="btn button-blue col-md-4"><i class="fa fa-lock"></i>
                                     {{ __('Login') }}
                                 </button> &nbsp; &nbsp;
                                 <a href="{{ route('register') }}">
-                                    <button type="button" class="btn btn-warning col-md-4"><i class="fa fa-user"></i>
+                                    <button type="button" class="btn button-orange col-md-4"><i class="fa fa-user"></i>
                                         {{ __('Register') }}
                                     </button>
                                 </a>

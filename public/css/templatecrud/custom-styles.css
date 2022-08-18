@@ -22,12 +22,22 @@ body {
     color: darkmagenta;
 }
 
-.custom-orange {
-    
+.text-blue {
+    color: #454cb3;
 }
 
-.custom-blue {
+.text-orange {
+    color: #fea00a;
+}
 
+.button-blue {
+    background-color: #454cb3 !important;
+    color: #ffffff;
+}
+
+.button-orange {
+    background-color: #fea00a !important;
+    color: #ffffff;
 }
 
 #wrapper {

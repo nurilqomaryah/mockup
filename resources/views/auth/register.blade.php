@@ -38,11 +38,11 @@
                             <div class="row">
                                 <div class="col-md-6 text-left">
                                     <a href="{{ route('login') }}">
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-backward"></i> Kembali ke Login</button>
+                                        <button type="button" class="btn button-blue"><i class="fa fa-backward"></i> Kembali ke Login</button>
                                     </a>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Daftarkan Saya</button>
+                                    <button type="submit" class="btn button-orange"><i class="fa fa-save"></i> Daftarkan Saya</button>
                                 </div>
                             </div>
                         </form>
