@@ -59,7 +59,7 @@ class PenyerapanAnggaran extends Model
             ->join('t_unitkerja','t_unitkerja.id','=','d_bagipagu.unit_id')
             ->where('kel_jab','=','E.III')
             ->groupBy('d_bagipagu.unit_id','t_unitkerja.nama_unit')
-            ->orderBy('t_unitkerja.nama_unit','desc')
+            ->orderBy('t_unitkerja.nama_unit')
             ->get();
     }
 }

@@ -10,7 +10,7 @@
                 <h2 style="text-align: center;">KINERJA DAN KEUANGAN PUSLITBANGWAS </h2>
                 <h2 style="text-align: center;">(MOCKUP) </h2>
                 <div class="card" style="margin-top: 3em;">
-                    <div class="card-header text-center">{{ __('Silakan melakukan Register') }}</div>
+                    <div class="card-header text-center">{{ __('Silakan melakukan Pendaftaran') }}</div>
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">
