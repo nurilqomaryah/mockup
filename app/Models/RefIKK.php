@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IKK extends Model
+class RefIKK extends Model
 {
     use HasFactory;
 
@@ -31,7 +31,7 @@ class IKK extends Model
 
     public function getTargetAndRealisasi()
     {
-        return IKK::select('ref_ikk.id_ikk','kd_ikk','nama_ikk','target','satuan','realisasi')
+        return RefIKK::select('ref_ikk.id_ikk','kd_ikk','nama_ikk','target','satuan','realisasi')
                   ->leftJoin('trx_real_ikk','trx_real_ikk.id_ikk','=','ref_ikk.id_ikk')
                   ->get();
     }

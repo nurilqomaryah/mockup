@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUsersRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -40,4 +41,6 @@ class RegisterController extends Controller
             ->route('register')
             ->with('error','Terdapat error');
     }
+
+
 }

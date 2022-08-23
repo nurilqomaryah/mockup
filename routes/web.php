@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RealIKKController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\MockupController;
+use App\Http\Controllers\Admin\SyncController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -32,13 +34,39 @@ Route::controller(RegisterController::class)
 Route::get('logout', [LogoutController::class,'onSubmitLogout'])->name('logout');
 
 Route::get('dashboard',[DashboardController::class, 'viewDashboard'])->name('dashboard');
-// Route::get('syncadmin',[MockupController::class, 'viewSyncData'])->name('syncadmin');
-Route::get('syncdata',[MockupController::class,'syncData'])->name('syncdata');
-Route::get('bagipagu',[MockupController::class, 'bagipagu']);
-Route::get('costsheet',[MockupController::class, 'costsheet']);
-Route::get('pagu',[MockupController::class, 'pagu']);
-Route::get('surattugas',[MockupController::class, 'surattugas']);
-Route::get('gaji',[MockupController::class, 'gaji']);
-Route::get('gajidetail',[MockupController::class, 'gajidetail']);
-Route::get('permintaanpbj',[MockupController::class, 'permintaanpbj']);
-Route::get('simast',[MockupController::class, 'simast']);
+
+//Route Sync Data
+Route::get('syncadmin',[SyncController::class, 'viewSyncData'])->name('syncadmin');
+Route::get('syncdata',[SyncController::class,'syncData'])->name('syncdata');
+Route::get('bagipagu',[SyncController::class, 'bagipagu']);
+Route::get('costsheet',[SyncController::class, 'costsheet']);
+Route::get('pagu',[SyncController::class, 'pagu']);
+Route::get('surattugas',[SyncController::class, 'surattugas']);
+Route::get('gaji',[SyncController::class, 'gaji']);
+Route::get('gajidetail',[SyncController::class, 'gajidetail']);
+Route::get('permintaanpbj',[SyncController::class, 'permintaanpbj']);
+Route::get('simast',[SyncController::class, 'simast']);
+
+//Route CRUD
+Route::middleware('sessionCheck')
+    ->prefix('users')
+    ->group(function(){
+        Route::get('/', [UserController::class,'index'])->name('users.index');
+        Route::get('/create',[UserController::class,'create'])->name('users.create');
+        Route::get('/edit/{id}',[UserController::class,'edit'])->name('users.edit');
+
+        Route::post('/destroy/{id}',[UserController::class,'destroy'])->name('users.destroy');
+        Route::post('/update/submit',[UserController::class,'update'])->name('users.update');
+        Route::post('/create/submit',[UserController::class,'store'])->name('users.store');
+    });
+
+Route::middleware('sessionCheck')
+    ->prefix('realisasi-ikk')
+    ->group(function(){
+        Route::get('/', [RealIKKController::class,'index'])->name('realikk.index');
+        Route::get('/create',[RealIKKController::class,'create'])->name('realikk.create');
+        Route::get('/edit',[RealIKKController::class,'edit'])->name('realikk.edit');
+
+        Route::post('/destroy/{id}',[RealIKKController::class,'destroy'])->name('realikk.destroy');
+        Route::post('/create/submit',[RealIKKController::class,'store'])->name('realikk.store');
+    });

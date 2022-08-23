@@ -29,27 +29,12 @@
     <li class="nav-item">
         <a class="nav-link" href="{{url('manajemenrole')}}">
             <i class="far fa-address-card"></i>
-            <span>Management Role</span></a>
+            <span>BIDANG 2</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{url('manajemencategory')}}">
             <i class="far fa-calendar-alt"></i>
-            <span>Management Category</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{url('manajementag')}}">
-            <i class="fas fa-tags"></i>
-            <span>Management Tag</span></a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="{{url('manajemenproduct')}}">
-        <i class="fas fa-tasks"></i>
-        <span>Management Product</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{url('manajemenpost')}}">
-            <i class="far fa-newspaper"></i>
-            <span>Management Post</span></a>
+            <span>BAGIAN UMUM</span></a>
     </li>
     @else
         <li class="nav-item">

@@ -15,7 +15,7 @@ use App\Models\SuratTugas;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
 
-class MockupController extends Controller
+class SyncController extends Controller
 {
     protected $allSchema;
 
@@ -59,6 +59,14 @@ class MockupController extends Controller
         // Menghitung jumlah data dari BISMA
         $count = count($result);
 
+        // Menghitung jumlah data pada database
+        $totalLocalData = BagiPagu::select('id')
+            ->count('id');
+
+        if($totalLocalData != $count)
+            BagiPagu::truncate();
+
+
         // Update tabel d_bagipagu dari data BISMA
         foreach ($result as $insert) {
             $res = BagiPagu::firstOrNew(['id' => $insert['id']]);
@@ -91,6 +99,13 @@ class MockupController extends Controller
         // Menghitung jumlah data dari BISMA
         $count = count($result);
 
+        // Menghitung jumlah data pada database
+        $totalLocalData = CostSheet::select('id')
+            ->count('id');
+
+        if($totalLocalData != $count)
+            CostSheet::truncate();
+
         // Update tabel d_costsheet dari data BISMA
         foreach ($result as $insert) {
             $res = CostSheet::firstOrNew(['id' => $insert['id']]);
@@ -115,7 +130,7 @@ class MockupController extends Controller
             ->route('syncadmin');
     }
 
-    
+
     public function pagu()
     {
         // Ambil data dari BISMA
@@ -123,6 +138,14 @@ class MockupController extends Controller
 
         // Menghitung jumlah data dari BISMA
         $count = count($result);
+
+        // Menghitung jumlah data pada database
+        $totalLocalData = Pagu::select('kdindex')
+            ->count('kdindex');
+
+        if($totalLocalData != $count)
+            Pagu::truncate();
+
 
         // Update tabel d_pagu dari data BISMA
         foreach ($result as $insert) {

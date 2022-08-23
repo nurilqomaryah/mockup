@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\IKK;
+use App\Models\RefIKK;
 use App\Models\PenyerapanAnggaran;
 use App\Models\PKAU;
 use Illuminate\Support\Facades\View;
@@ -16,7 +16,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->ikk = new IKK();
+        $this->ikk = new RefIKK();
         $this->penyerapanangg = new PenyerapanAnggaran();
         $this->pkau = new PKAU();
     }
