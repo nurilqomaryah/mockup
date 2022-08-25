@@ -50,8 +50,8 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Update User') }}
+                                    <button type="submit" class="btn button-blue">
+                                        <i class="fa fa-save"></i> {{ __('Update User') }}
                                     </button>
                                 </div>
                             </div>

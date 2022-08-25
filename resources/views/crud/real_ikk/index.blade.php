@@ -36,13 +36,13 @@
                                 <td>{{$real_ikk->id_ikk}}</td>
                                 <td>{{$real_ikk->kd_ikk}}</td>
                                 <td>{{$real_ikk->nama_ikk}}</td>
-                                <td></td>
+                                <td>{{$real_ikk->bulan}}</td>
                                 <td>{{$real_ikk->realisasi}}</td>
                                 <td>
-                                    <a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ route('realikk.edit',$real_ikk->id)}}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('users.destroy', $user->id)}}" method="post">
+                                    <form action="{{ route('$realikk.destroy', $real_ikk>id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <input class="btn btn-danger btn-sm" type="submit" value="Delete"></input>

@@ -39,27 +39,27 @@
     @else
         <li class="nav-item">
             <a class="nav-link" href="{{url('dashboardauthor')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-home" style="color: white"></i>
                 <span>DASHBOARD</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('manajemenproduct')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-user-check" style="color: white"></i>
                 <span>BIDANG 1</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('manajemenpost')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-user-graduate" style="color: white"></i>
                 <span>BIDANG 2</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('manajemenpost')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
                 <span>BAGIAN UMUM</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('manajemenpost')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-tachometer-alt" style="color: white"></i>
                 <span>PENGATURAN</span></a>
         </li>
     @endif

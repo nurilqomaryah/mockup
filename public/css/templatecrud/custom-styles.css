@@ -32,12 +32,12 @@ body {
 
 .button-blue {
     background-color: #454cb3 !important;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .button-orange {
     background-color: #fea00a !important;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 #wrapper {

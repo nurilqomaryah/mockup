@@ -10,7 +10,7 @@ class RefIKK extends Model
     use HasFactory;
 
     protected $table = 'ref_ikk';
-    protected $primaryKey = 'id_kk';
+    protected $primaryKey = 'id_ikk';
     public $timestamps = false;
 
     /**

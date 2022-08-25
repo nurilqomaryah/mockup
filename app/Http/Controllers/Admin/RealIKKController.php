@@ -73,14 +73,14 @@ class RealIKKController extends Controller
     {
         $request->validate([
             'id_ikk'=>'required',
-            'nama_ikk'=>'required',
             'realisasi'=>'required'
         ]);
 
 
-        $realikk = new RefIKK([
+        $realikk = new RealIKK([
             'id_ikk' => $request->get('id_ikk'),
-            'nama_ikk' => $request->get('nama_ikk'),
+            'tahun' => $request->get('tahun'),
+            'bulan' => $request->get('bulan'),
             'realisasi' => $request->get('realisasi'),
         ]);
 
@@ -112,7 +112,7 @@ class RealIKKController extends Controller
         $this->data['real_ikk'] = DB::table('trx_real_ikk')
             ->get();
 
-        $this->data['edit_realikk'] = RefIKK::find($id);
+        $this->data['edit_realikk'] = RealIKK::find($id);
 
         return view('crud.real_ikk.editrealikk', $this->data);
     }
@@ -124,19 +124,19 @@ class RealIKKController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $request->validate([
             'id_ikk'=>'required',
-            'nama_ikk'=>'required',
             'realisasi'=>'required'
         ]);
 
         $id = $request->post('id');
 
-        $realikk = RefIKK::find($id);
+        $realikk = RealIKK::find($id);
         $realikk->id_ikk = $request->post('id_ikk');
-        $realikk->nama_ikk = $request->post('nama_ikk');
+        $realikk->tahun = $request->post('tahun');
+        $realikk->bulan = $request->post('bulan');
         $realikk->realisasi = $request->post('realisasi');
         $realikk->save();
 

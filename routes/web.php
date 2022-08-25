@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RealIKKController;
+use App\Http\Controllers\AsyncRequest\RefIkkAsyncRequest;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\SyncController;
 use App\Http\Controllers\Admin\UserController;
@@ -55,9 +56,9 @@ Route::middleware('sessionCheck')
         Route::get('/create',[UserController::class,'create'])->name('users.create');
         Route::get('/edit/{id}',[UserController::class,'edit'])->name('users.edit');
 
-        Route::post('/destroy/{id}',[UserController::class,'destroy'])->name('users.destroy');
-        Route::post('/update/submit',[UserController::class,'update'])->name('users.update');
         Route::post('/create/submit',[UserController::class,'store'])->name('users.store');
+        Route::post('/update/submit',[UserController::class,'update'])->name('users.update');
+        Route::post('/destroy/{id}',[UserController::class,'destroy'])->name('users.destroy');
     });
 
 Route::middleware('sessionCheck')
@@ -67,6 +68,11 @@ Route::middleware('sessionCheck')
         Route::get('/create',[RealIKKController::class,'create'])->name('realikk.create');
         Route::get('/edit',[RealIKKController::class,'edit'])->name('realikk.edit');
 
-        Route::post('/destroy/{id}',[RealIKKController::class,'destroy'])->name('realikk.destroy');
         Route::post('/create/submit',[RealIKKController::class,'store'])->name('realikk.store');
+        Route::post('/update/submit',[RealIKKController::class,'update'])->name('realikk.update');
+        Route::post('/destroy/{id}',[RealIKKController::class,'destroy'])->name('realikk.destroy');
+
     });
+
+Route::post('/async-request/ref-ikk',
+    [RefIkkAsyncRequest::class,'onRequestRefIkk']);
