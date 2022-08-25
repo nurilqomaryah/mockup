@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RealIKK\CreateRealIKK;
+use App\Http\Controllers\Admin\RealIKK\DeleteRealIKK;
+use App\Http\Controllers\Admin\RealIKK\IndexRealIKK;
+use App\Http\Controllers\Admin\RealIKK\UpdateRealIKK;
 use App\Http\Controllers\Admin\RealIKKController;
 use App\Http\Controllers\AsyncRequest\RefIkkAsyncRequest;
 use App\Http\Controllers\Auth\LoginController;
@@ -64,13 +68,13 @@ Route::middleware('sessionCheck')
 Route::middleware('sessionCheck')
     ->prefix('realisasi-ikk')
     ->group(function(){
-        Route::get('/', [RealIKKController::class,'index'])->name('realikk.index');
-        Route::get('/create',[RealIKKController::class,'create'])->name('realikk.create');
-        Route::get('/edit',[RealIKKController::class,'edit'])->name('realikk.edit');
+        Route::get('/', [IndexRealIKK::class,'viewIndexRealIKK'])->name('realikk.index');
+        Route::get('/create',[CreateRealIKK::class,'viewCreateRealIKK'])->name('realikk.create');
+        Route::get('/edit/{idRealisasiIKK}',[UpdateRealIKK::class,'viewUpdateRealIKK'])->name('realikk.edit');
 
-        Route::post('/create/submit',[RealIKKController::class,'store'])->name('realikk.store');
-        Route::post('/update/submit',[RealIKKController::class,'update'])->name('realikk.update');
-        Route::post('/destroy/{id}',[RealIKKController::class,'destroy'])->name('realikk.destroy');
+        Route::post('/create/submit',[CreateRealIKK::class,'onSubmitCreateRealIKK'])->name('realikk.store');
+        Route::post('/update/submit',[UpdateRealIKK::class,'onSubmitUpdateRealIKK'])->name('realikk.update');
+        Route::post('/destroy/{idRealisasiIKK}',[DeleteRealIKK::class,'onSubmitDeleteRealIKK'])->name('realikk.destroy');
 
     });
 

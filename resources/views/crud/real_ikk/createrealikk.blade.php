@@ -11,10 +11,10 @@
                             <div class="form-group row">
                                 <label for="id_ikk" class="col-md-4 col-form-label text-md-right">{{ __('Nama IKK*') }}</label>
                                 <div class="col-md-6">
-                                    <select name="id_ikk" class="form-control" id="id_ikk" autofocus>
+                                    <select name="id-ikk" class="form-control" id="id_ikk" autofocus>
                                         <option value="">--- Pilih IKK ---</option>
-                                        @foreach($id_ikk as $key)
-                                            <option value="{{$key->id_ikk}}">{{$key->kd_ikk}} - {{$key->nama_ikk}}</option>
+                                        @foreach($listReferensiIKK as $referensiIKK)
+                                            <option value="{{$referensiIKK->id_ikk}}">{{$referensiIKK->kd_ikk}} - {{$referensiIKK->nama_ikk}}</option>
                                         @endforeach
                                     </select>
                                 </div>

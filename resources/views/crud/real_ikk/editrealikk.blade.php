@@ -9,13 +9,15 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('realikk.update') }}">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $edit_realikk->id }}"/>
+                            <input type="hidden" name="id-realisasi-ikk" value="{{ $dataRealisasiIKK->id_real_ikk }}"/>
                             <div class="form-group row">
                                 <label for="id_ikk" class="col-md-4 col-form-label text-md-right">{{ __('Nama IKK*') }}</label>
                                 <div class="col-md-6">
-                                    <select name="id_ikk" class="form-control" id="id_ikk" autofocus>
-                                        @foreach($id_ikk as $key)
-                                            <option value="{{$key->id_ikk}}" {{$edit_realikk->id_ikk == $key->$id_ikk ? 'selected' : ''}}>{{$key->$id_ikk}} - {{$key->nama_ikk}}</option>
+                                    <select name="id-ikk" class="form-control" id="id_ikk" autofocus>
+                                        @foreach($listReferensiIKK as $referensiIKK)
+                                            <option value="{{$referensiIKK->id_ikk}}" {{$dataRealisasiIKK->id_real_ikk == $referensiIKK->id_ikk ? 'selected' : ''}}>
+                                                {{$referensiIKK->id_ikk}} - {{$referensiIKK->nama_ikk}}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -32,7 +34,9 @@
                                     <select name="bulan" class="form-control">
                                         <option value="">--- Pilih Bulan ---</option>
                                         @foreach($listBulan as $bulan)
-                                            <option value="{{ $loop->iteration }}">{{ $bulan }}</option>
+                                            <option value="{{ $loop->iteration }}" @if($dataRealisasiIKK->bulan == $loop->iteration) selected @endif>
+                                                {{ $bulan }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -40,13 +44,13 @@
                             <div class="form-group row">
                                 <label for="target" class="col-md-4 col-form-label text-md-right">{{ __('Target') }}</label>
                                 <div class="col-md-6">
-                                    <input id="target" type="text" class="form-control @error('target') is-invalid @enderror" name="target" value="{{ old('target') }}" readonly">
+                                    <input id="target" type="text" class="form-control @error('target') is-invalid @enderror" name="target" value="{{ $dataReferensiIKK->target }}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="realisasi" class="col-md-4 col-form-label text-md-right">{{ __('Realisasi*') }}</label>
                                 <div class="col-md-6">
-                                    <input id="realisasi" type="text" class="form-control @error('realisasi') is-invalid @enderror" name="realisasi" value="{{ $edit_realikk->realisasi }} " autocomplete="realisasi">
+                                    <input id="realisasi" type="text" class="form-control @error('realisasi') is-invalid @enderror" name="realisasi" value="{{ $dataRealisasiIKK->realisasi }} " autocomplete="realisasi">
                                     @error('realisasi')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

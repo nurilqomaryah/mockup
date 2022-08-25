@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,4 +30,21 @@ class RealIKK extends Model
         'updated_at',
     ];
 
+    /**
+     * Digunakan untuk mendapatkan seluruh data realisasi IKK
+     * @return Collection
+     */
+    public function getRealisasiIKK(): Collection
+    {
+        return RealIKK::select(
+            'id_real_ikk',
+            'kd_ikk',
+            'nama_ikk',
+            'tahun',
+            'bulan',
+            'realisasi'
+        )
+            ->join('ref_ikk','ref_ikk.id_ikk','=','trx_real_ikk.id_ikk')
+            ->get();
+    }
 }

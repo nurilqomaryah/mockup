@@ -1,5 +1,4 @@
 @extends('layouts.crud')
-
 @section('main')
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12">
@@ -24,6 +23,7 @@
                             <th>No</th>
                             <th>Kode IKK</th>
                             <th>Nama IKK</th>
+                            <th>Tahun</th>
                             <th>Bulan</th>
                             <th>Realisasi</th>
                             <th>Aksi</th>
@@ -31,21 +31,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($realikk as $real_ikk)
+                        @foreach($listRealisasiIKK as $realisasiIKK)
                             <tr>
-                                <td>{{$real_ikk->id_ikk}}</td>
-                                <td>{{$real_ikk->kd_ikk}}</td>
-                                <td>{{$real_ikk->nama_ikk}}</td>
-                                <td>{{$real_ikk->bulan}}</td>
-                                <td>{{$real_ikk->realisasi}}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $realisasiIKK->kd_ikk }}</td>
+                                <td>{{ $realisasiIKK->nama_ikk }}</td>
+                                <td>{{ $realisasiIKK->tahun }}</td>
+                                <td>{{ $realisasiIKK->bulan }}</td>
+                                <td>{{ $realisasiIKK->realisasi }}</td>
                                 <td>
-                                    <a href="{{ route('realikk.edit',$real_ikk->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ route('realikk.edit',['idRealisasiIKK'=>$realisasiIKK->id_real_ikk]) }}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('$realikk.destroy', $real_ikk>id)}}" method="post">
+                                    <form action="{{ route('realikk.destroy', ['idRealisasiIKK'=>$realisasiIKK->id_real_ikk] )}}" method="post">
                                         @csrf
-                                        @method('DELETE')
-                                        <input class="btn btn-danger btn-sm" type="submit" value="Delete"></input>
+                                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
                                     </form>
                                 </td>
                             </tr>
