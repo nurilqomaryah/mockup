@@ -1,16 +1,17 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PKAU extends Model
+class RefIndex extends Model
 {
     use HasFactory;
 
-    protected $table = 'ref_pkau';
-    protected $primaryKey = 'id_pkau';
+    protected $table = 'ref_index';
+    protected $primaryKey = 'kdindex';
     public $timestamps = false;
 
     /**
@@ -19,14 +20,9 @@ class PKAU extends Model
      * @var string[]
      */
     protected $fillable = [
-        'id_pkau',
-        'nama_pkau',
-        'created_at',
-        'updated_at',
-    ];
+        'kdindex',
+        'uraian'
 
-    public function getPKAU()
-    {
-        return PKAU::select('id_pkau','nama_pkau')->get();
-    }
+    ];
 }
+

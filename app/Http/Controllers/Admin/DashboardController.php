@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\RefIKK;
 use App\Models\PenyerapanAnggaran;
-use App\Models\PKAU;
+use App\Models\RefPKAU;
 use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         $this->ikk = new RefIKK();
         $this->penyerapanangg = new PenyerapanAnggaran();
-        $this->pkau = new PKAU();
+        $this->pkau = new RefPKAU();
     }
 
     public function viewDashboard()
