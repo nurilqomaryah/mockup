@@ -30,5 +30,13 @@ class RefPKAU extends Model
         return RefPKAU::select('id_pkau','nama_pkau')->get();
     }
 
-
+    public function getAvailablePKAUByKdIndex($kdIndex)
+    {
+        return RefPKAU::select(
+            'id_pkau',
+            'nama_pkau'
+        )
+            ->whereNotIn('id_pkau',AnggaranPKAU::select('id_pkau')->where('kdindex', $kdIndex)->get())
+            ->get();
+    }
 }

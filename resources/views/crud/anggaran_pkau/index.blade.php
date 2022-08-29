@@ -17,23 +17,22 @@
                     <table id="data_anggaran" class="table table-striped table-bordered" style="width: 100%">
                         <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Uraian Anggaran</th>
-                            <th>Nilai Anggaran</th>
-                            <th>Total Mapping</th>
-                            <th>Aksi</th>
-                            <th></th>
+                            <th style="text-align: center">No</th>
+                            <th style="text-align: center">Uraian Anggaran</th>
+                            <th style="text-align: center">Nilai Anggaran</th>
+                            <th style="text-align: center">Total Mapping</th>
+                            <th style="text-align: center">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($listAnggaran as $anggaranPKAU)
+                        @foreach($listIndex as $index)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{$anggaranPKAU->uraian}}</td>
-                                <td>{{$anggaranPKAU->rupiah}}</td>
-                                <td>{{$anggaranPKAU->total_mapping}}</td>
-                                <td>
-                                    <a href="{{ route('anggaran.mapping',$anggaranPKAU->id)}}" class="btn btn-primary btn-sm">Mapping</a>
+                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                <td>{!! $index->uraian !!}</td>
+                                <td class="text-right">Rp{{ number_format($index->rupiah,2,',','.') }}</td>
+                                <td class="text-right">Rp{{ number_format($index->total_mapping,2,',','.') }}</td>
+                                <td style="text-align: center">
+                                    <a href="{{ route('mapping_anggaran.mapping',['idReferensiIndex' => $index->kdindex]) }}" class="btn btn-primary btn-sm">Mapping</a>
                                 </td>
                             </tr>
                         @endforeach

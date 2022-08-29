@@ -7,6 +7,7 @@ use App\Models\AnggaranPKAU;
 use App\Models\Pagu;
 use App\Models\RefIndex;
 use App\Models\RefPKAU;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
@@ -27,16 +28,25 @@ class MappingAnggaranPKAU extends Controller
         $this->anggaranPKAU = new AnggaranPKAU();
     }
 
-
-    public function viewMappingAnggaran(Request $request)
+    /**
+     * Digunakan untuk menampilkan mapping anggaran
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function viewMappingAnggaran(Request $request): View
     {
-        $idAnggaranPKAU = $request->route('idAnggaranPKAU');
-        $dataAnggaranPKAU = $this->anggaranPKAU->find($idAnggaranPKAU);
+        $idReferensiIndex = $request->route('idReferensiIndex');
+        $dataReferensiIndex = $this->refIndex->find($idReferensiIndex);
+        $dataPagu = $this->pagu->find($idReferensiIndex);
+        $nilaiPkau = $this->anggaranPKAU->getNilaiPKAUByKdIndex($idReferensiIndex);
         $listReferensiIndex = $this->refIndex->all();
-        $dataPagu = $this->pagu->all();
-        $dataPKAU = $this->refPKAU->all();
+        $listMapping = $this->anggaranPKAU->getPKAUAnggaran();
+        $listPkau = $this->refPKAU->getAvailablePKAUByKdIndex($idReferensiIndex);
 
-        return view('crud.anggaran_pkau.mapping_anggaran', compact('dataAnggaranPKAU','listReferensiIndex','dataPagu','dataPKAU'));
+        return view('crud.anggaran_pkau.mapping_anggaranpkau',
+            compact('dataReferensiIndex','listReferensiIndex','listMapping','dataPagu','nilaiPkau','listPkau')
+        );
     }
 
     /**
@@ -49,28 +59,29 @@ class MappingAnggaranPKAU extends Controller
         // Validation
         $request->validate([
             'kd-index'=>'required',
-            'nama-pkau'=>'required',
+            'id-pkau'=>'required',
             'nilai-pkau'=>'required'
         ]);
 
         // Get Post Data
         $kdIndex = $request->post('kd-index');
-        $namaPKAU = $request->post('nama-pkau');
+        $idPkau = $request->post('id-pkau');
         $nilaiPkau = $request->post('nilai-pkau');
 
         $this->anggaranPKAU->kdindex = $kdIndex;
-        $this->anggaranPKAU->nama_pkau = $namaPKAU;
+        $this->anggaranPKAU->id_pkau = $idPkau;
         $this->anggaranPKAU->nilai_pkau = $nilaiPkau;
+        $this->anggaranPKAU->tahun = Carbon::now()->format('Y');
 
         $result = $this->anggaranPKAU->save();
 
         if($result)
             return redirect()
-                ->route('mapping_anggaran.mapping_anggaranpkau')
+                ->route('mapping_anggaran.mapping', ['idReferensiIndex'=>$kdIndex])
                 ->with('success', 'Mapping Anggaran PKAU berhasil!');
 
         return redirect()
-            ->route('mapping_anggaran.mapping_anggaranpkau')
+            ->route('mapping_anggaran.mapping', ['idReferensiIndex'=>$kdIndex])
             ->with('error','Gagal melakukan mapping anggaran PKAU');
     }
 

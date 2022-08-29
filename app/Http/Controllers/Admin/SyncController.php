@@ -183,6 +183,13 @@ class SyncController extends Controller
         // Menghitung jumlah data dari BISMA
         $count = count($result);
 
+        // Menghitung jumlah data pada database
+        $totalLocalData = SuratTugas::select('id')
+            ->count('id');
+
+        if($totalLocalData != $count)
+            SuratTugas::truncate();
+
         // Update tabel d_surattugas dari data BISMA
         foreach ($result as $insert) {
             $res = SuratTugas::firstOrNew(['id' => $insert['id']]);
@@ -219,6 +226,13 @@ class SyncController extends Controller
         // Menghitung jumlah data dari BISMA
         $count = count($result);
 
+        // Menghitung jumlah data pada database
+        $totalLocalData = Gaji::select('id')
+            ->count('id');
+
+        if($totalLocalData != $count)
+            Gaji::truncate();
+
         // Update tabel t_gaji dari data BISMA
         foreach ($result as $insert) {
             $res = Gaji::firstOrNew(['id' => $insert['id']]);
@@ -247,6 +261,13 @@ class SyncController extends Controller
         // Menghitung jumlah data dari BISMA
         $count = count($result);
 
+        // Menghitung jumlah data pada database
+        $totalLocalData = GajiDetail::select('id')
+            ->count('id');
+
+        if($totalLocalData != $count)
+            GajiDetail::truncate();
+
         // Update tabel t_gaji_detail dari data BISMA
         foreach ($result as $insert) {
             $res = GajiDetail::firstOrNew(['id' => $insert['id']]);
@@ -269,6 +290,13 @@ class SyncController extends Controller
 
         // Menghitung jumlah data dari BISMA
         $count = count($result);
+
+        // Menghitung jumlah data pada database
+        $totalLocalData = PermintaanPBJ::select('id')
+            ->count('id');
+
+        if($totalLocalData != $count)
+            PermintaanPBJ::truncate();
 
         // Update tabel t_permintaan_pbj dari data BISMA
         foreach ($result as $insert) {
@@ -306,6 +334,13 @@ class SyncController extends Controller
 
         // Menghitung jumlah data dari BISMA
         $count = count($result);
+
+        // Menghitung jumlah data pada database
+        $totalLocalData = SimaST::select('id_st')
+            ->count('id_st');
+
+        if($totalLocalData != $count)
+            SimaST::truncate();
 
         // Update tabel t_sima_st dari data BISMA
         foreach ($result as $insert) {

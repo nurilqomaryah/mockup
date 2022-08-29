@@ -1,22 +1,22 @@
 @extends('layouts.crud')
 
 @section('main')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit Mapping ST') }}</div>
+                    <div class="card-header">{{ __('Edit Mapping PBJ') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{ route('mapping_pbj.update') }}">
                             @csrf
-                            <input type="hidden" name="id-mapping-st" value="{{ $dataMappingST->id }}"/>
+                            <input type="hidden" name="id-mapping-pbj" value="{{ $dataMappingPBJ->id }}"/>
                             <div class="form-group row">
-                                <label for="id_st" class="col-md-4 col-form-label text-md-right">{{ __('Nomor dan Nama ST') }}</label>
+                                <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Nomor dan Nama PBJ') }}</label>
                                 <div class="col-md-6">
-                                    <select name="id-st" class="form-control" id="id_st" autofocus>
-                                        @foreach($listPenugasan as $listST)
-                                            <option value="{{$listST->id_st}}" {{$dataMappingST->id == $listST->id_st ? 'selected' : ''}}>
-                                                {{$listST->no_surat_tugas}} - {{$listST->nama_penugasan}}
+                                    <select name="id-pbj" class="form-control" id="id" autofocus>
+                                        @foreach($listPBJ as $pbj)
+                                            <option value="{{$pbj->id}}" {{$dataMappingPBJ->id_permintaan_pbj == $pbj->id ? 'selected' : ''}}>
+                                                {{$pbj->nomor_ppbj}} - {{$pbj->nama_pbj}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -27,7 +27,7 @@
                                 <div class="col-md-6">
                                     <select name="id-anggaran" class="form-control" id="id" autofocus>
                                         @foreach($listAnggaran as $anggaranPKAU)
-                                            <option value="{{$anggaranPKAU->id}}" {{$dataMappingST->id == $anggaranPKAU->id ? 'selected' : ''}}>
+                                            <option value="{{$anggaranPKAU->id}}" {{$dataMappingPBJ->id_anggaran_pkau == $anggaranPKAU->id ? 'selected' : ''}}>
                                                 {{$anggaranPKAU->nama_pkau}} - {{$anggaranPKAU->uraian}}
                                             </option>
                                         @endforeach
@@ -37,7 +37,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn button-blue">
-                                        <i class="fa fa-save"></i> {{ __('Update Mapping ST') }}
+                                        <i class="fa fa-save"></i> {{ __('Update Mapping PBJ') }}
                                     </button>
                                 </div>
                             </div>

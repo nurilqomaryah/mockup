@@ -33,7 +33,7 @@ class UpdateMappingST extends Controller
         $idMappingST = $request->route('idMappingST');
         $dataMappingST = $this->mappingST->find($idMappingST);
         $listPenugasan = $this->simaST->all();
-        $listAnggaran = $this->pkauAnggaran->all();
+        $listAnggaran = $this->pkauAnggaran->getPKAUAnggaran();
         return view('crud.mapping_st.edit_mappingst', compact('dataMappingST','listPenugasan','listAnggaran'));
     }
 
@@ -62,7 +62,7 @@ class UpdateMappingST extends Controller
                 ->with('success', 'Mapping ST berhasil terupdate!');
 
         return redirect()
-            ->route('realikk.update')
+            ->route('mappingst.update')
             ->with('error','Gagal melakukan edit mapping ST');
     }
 

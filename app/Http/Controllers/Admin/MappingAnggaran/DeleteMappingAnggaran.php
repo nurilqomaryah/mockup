@@ -24,11 +24,11 @@ class DeleteMappingAnggaran extends Controller
 
         if($result)
             return redirect()
-                ->route('mapping_anggaran.mapping_anggaranpkau')
+                ->route('mapping_anggaran.mapping', ['idReferensiIndex'=>$mappingAnggaran->kdindex])
                 ->with('success', 'Berhasil menghapus mapping anggaran PKAU!');
 
         return redirect()
-            ->route('mapping_anggaran.mapping_anggaranpkau')
+            ->route('mapping_anggaran.mapping', ['idReferensiIndex'=>$mappingAnggaran->kdindex])
             ->with('error','Gagal menghapus mapping anggaran PKAU');
     }
 }

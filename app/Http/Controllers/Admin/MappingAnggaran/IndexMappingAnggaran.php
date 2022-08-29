@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin\MappingAnggaran;
 
 use App\Http\Controllers\Controller;
 use App\Models\AnggaranPKAU;
+use App\Models\RefIndex;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 
 class IndexMappingAnggaran extends Controller
 {
-    protected $mappingAnggaran;
-
+    protected $refIndex;
     public function __construct()
     {
-        $this->mappingAnggaran = new AnggaranPKAU();
+        $this->refIndex         = new RefIndex();
     }
 
     /**
@@ -22,7 +22,7 @@ class IndexMappingAnggaran extends Controller
      */
     public function viewIndexMappingAnggaran(): View
     {
-        $listAnggaran = $this->mappingAnggaran->getIndexAnggaran();
-        return view('crud.anggaran_pkau.index', compact('listAnggaran'));
+        $listIndex = $this->refIndex->getKdIndexForMapping();
+        return view('crud.anggaran_pkau.index', compact('listIndex'));
     }
 }

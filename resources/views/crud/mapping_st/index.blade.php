@@ -38,7 +38,7 @@
                                 <td>{{ $mappingST->nama_pkau }}</td>
                                 <td>{{ $mappingST->uraian }}</td>
                                 <td>
-                                    <a href="{{ route('mappingst.edit',['idMappingST'=>$mappingst->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ route('mappingst.edit',['idMappingST'=>$mappingST->id] )}}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
                                 <td>
                                     <form action="{{ route('mappingst.destroy', ['idMappingST'=>$mappingST->id] )}}" method="post">

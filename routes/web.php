@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MappingAnggaran\DeleteMappingAnggaran;
 use App\Http\Controllers\Admin\MappingAnggaran\IndexMappingAnggaran;
 use App\Http\Controllers\Admin\MappingAnggaran\MappingAnggaranPKAU;
+use App\Http\Controllers\Admin\MappingPBJ\CreateMappingPBJ;
+use App\Http\Controllers\Admin\MappingPBJ\DeleteMappingPBJ;
+use App\Http\Controllers\Admin\MappingPBJ\IndexMappingPBJ;
+use App\Http\Controllers\Admin\MappingPBJ\UpdateMappingPBJ;
 use App\Http\Controllers\Admin\MappingST\CreateMappingST;
 use App\Http\Controllers\Admin\MappingST\DeleteMappingST;
 use App\Http\Controllers\Admin\MappingST\IndexMappingST;
@@ -92,7 +96,7 @@ Route::middleware('sessionCheck')
     ->prefix('mapping-anggaran')
     ->group(function(){
         Route::get('/', [IndexMappingAnggaran::class,'viewIndexMappingAnggaran'])->name('mapping_anggaran.index');
-        Route::get('/mapping/{idAnggaranPKAU}',[MappingAnggaranPKAU::class,'viewMappingAnggaran'])->name('mapping_anggaran.mapping');
+        Route::get('/mapping/{idReferensiIndex}',[MappingAnggaranPKAU::class,'viewMappingAnggaran'])->name('mapping_anggaran.mapping');
 
         Route::post('/mapping/submit',[App\Http\Controllers\Admin\MappingAnggaran\MappingAnggaranPKAU::class,'onSubmitMappingAnggaran'])->name('mapping_anggaran.store');
         Route::post('/destroy/{idAnggaranPKAU}',[DeleteMappingAnggaran::class,'onSubmitDeleteMappingAnggaran'])->name('mapping_anggaran.destroy');
@@ -113,14 +117,14 @@ Route::middleware('sessionCheck')
     });
 
 //Route Mapping PBJ
-//Route::middleware('sessionCheck')
-//    ->prefix('mapping-st')
-//    ->group(function() {
-//        Route::get('/', [IndexMappingST::class,'viewIndexMappingST'])->name('mappingst.index');
-//        Route::get('/create', [CreateMappingST::class, 'viewCreateMappingST'])->name('mappingst.create');
-//        Route::get('/edit/{idMappingST}', [UpdateMappingST::class, 'viewUpdateMappingST'])->name('mappingst.edit');
-//
-//        Route::post('/create/submit', [CreateMappingST::class, 'onSubmitCreateMappingST'])->name('mappingst.store');
-//        Route::post('/update/submit', [UpdateMappingST::class, 'onSubmitUpdateMappingST'])->name('mappingst.update');
-//        Route::post('/destroy/{idMappingST}', [DeleteMappingST::class, 'onSubmitDeleteMappingST'])->name('mappingst.destroy');
-//    });
+Route::middleware('sessionCheck')
+    ->prefix('mapping-pbj')
+    ->group(function() {
+        Route::get('/', [IndexMappingPBJ::class,'viewIndexMappingPBJ'])->name('mapping_pbj.index');
+        Route::get('/create', [CreateMappingPBJ::class, 'viewCreateMappingPBJ'])->name('mapping_pbj.create');
+        Route::get('/edit/{idMappingPBJ}', [UpdateMappingPBJ::class, 'viewUpdateMappingPBJ'])->name('mapping_pbj.edit');
+
+        Route::post('/create/submit', [CreateMappingPBJ::class, 'onSubmitCreateMappingPBJ'])->name('mapping_pbj.store');
+        Route::post('/update/submit', [UpdateMappingPBJ::class, 'onSubmitUpdateMappingPBJ'])->name('mapping_pbj.update');
+        Route::post('/destroy/{idMappingPBJ}', [DeleteMappingPBJ::class, 'onSubmitDeleteMappingPBJ'])->name('mapping_pbj.destroy');
+    });
