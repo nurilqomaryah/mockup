@@ -30,7 +30,7 @@ class CreateRealIKK extends Controller
     {
         $listReferensiIKK = $this->refIKK->all();
         $listBulan = $this->__generateListBulan();
-        return view('crud.real_ikk.createrealikk', compact('listReferensiIKK','listBulan'));
+        return view('crud.real_ikk.create_realikk', compact('listReferensiIKK','listBulan'));
     }
 
     /**

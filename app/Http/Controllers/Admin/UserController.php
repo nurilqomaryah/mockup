@@ -44,7 +44,7 @@ class UserController extends Controller
     public function create(): View
     {
         $data['idRole'] = Role::all();
-        return view('crud.users.createuser', $data);
+        return view('crud.users.create_user', $data);
 
     }
 
@@ -99,7 +99,7 @@ class UserController extends Controller
 
         $this->data['edit_user'] = Users::find($id);
 
-        return view('crud.users.edituser', $this->data);
+        return view('crud.users.edit_user', $this->data);
     }
 
     /**

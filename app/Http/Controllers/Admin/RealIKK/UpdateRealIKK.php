@@ -26,7 +26,7 @@ class UpdateRealIKK extends Controller
         $dataReferensiIKK = $this->refIKK->find($dataRealisasiIKK->id_ikk);
         $listReferensiIKK = $this->refIKK->all();
         $listBulan = $this->__generateListBulan();
-        return view('crud.real_ikk.editrealikk', compact('dataRealisasiIKK','dataReferensiIKK',
+        return view('crud.real_ikk.edit_realikk', compact('dataRealisasiIKK','dataReferensiIKK',
             'listBulan','listReferensiIKK'));
     }
 
