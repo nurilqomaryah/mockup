@@ -37,7 +37,7 @@ class CreateMappingST extends Controller
      */
     public function viewCreateMappingST(): View
     {
-        $listPenugasan = $this->simaST->all();
+        $listPenugasan = $this->simaST->getAvailableST();
         $listAnggaran = $this->pkauAnggaran->getPKAUAnggaran();
         return view('crud.mapping_st.create_mappingst', compact('listPenugasan','listAnggaran'));
     }

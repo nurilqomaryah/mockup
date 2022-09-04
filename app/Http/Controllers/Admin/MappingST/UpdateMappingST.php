@@ -32,7 +32,8 @@ class UpdateMappingST extends Controller
     {
         $idMappingST = $request->route('idMappingST');
         $dataMappingST = $this->mappingST->find($idMappingST);
-        $listPenugasan = $this->simaST->all();
+        $idSt = $dataMappingST->id_st;
+        $listPenugasan = $this->simaST->getAvailableSTAndCurrentST($idSt);
         $listAnggaran = $this->pkauAnggaran->getPKAUAnggaran();
         return view('crud.mapping_st.edit_mappingst', compact('dataMappingST','listPenugasan','listAnggaran'));
     }
@@ -52,7 +53,7 @@ class UpdateMappingST extends Controller
 
         $mappingST = $this->mappingST->find($idMappingST);
         $mappingST->id_st = $idST;
-        $mappingST->id = $idAnggaran;
+        $mappingST->id_anggaran_pkau = $idAnggaran;
 
         $result = $mappingST->save();
 

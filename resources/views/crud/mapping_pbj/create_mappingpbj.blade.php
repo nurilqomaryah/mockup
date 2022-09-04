@@ -10,9 +10,9 @@
                         <form method="POST" action="{{ route('mapping_pbj.store') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Nomor dan Nama PBJ') }}</label>
+                                <label for="id-pbj" class="col-md-4 col-form-label text-md-right">{{ __('Nomor dan Nama PBJ') }}</label>
                                 <div class="col-md-6">
-                                    <select name="id-pbj" class="form-control" id="id" autofocus>
+                                    <select name="id-pbj" class="form-control" id="id-pbj" autofocus>
                                         <option value="">--- Pilih Nomor dan Nama PBJ ---</option>
                                         @foreach($listPBJ as $pbj)
                                             <option value="{{$pbj->id}}">{{$pbj->nomor_ppbj}} - {{$pbj->nama_pbj}}</option>
@@ -48,4 +48,14 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#id-pbj').select2({
+                theme: 'bootstrap4'
+            })
+            $('#id').select2({
+                theme: 'bootstrap4'
+            })
+        })
+    </script>
 @endsection

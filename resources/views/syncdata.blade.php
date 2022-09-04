@@ -3,14 +3,6 @@
 @section('main')
 <div class="row">
     <div class="col-md-12">
-        <h2 class="page-header">
-            Halaman Sync Data
-        </h2>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
 {{--        <div class="alert alert-success">--}}
 {{--            Selamat datang <u>{{ \Illuminate\Support\Facades\Session::get('nama') }}</u>--}}
 {{--        </div>--}}

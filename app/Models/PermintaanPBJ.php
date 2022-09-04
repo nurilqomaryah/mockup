@@ -41,4 +41,19 @@ class PermintaanPBJ extends Model
         'status'
 
     ];
+
+    public function getAvailablePBJ()
+    {
+        return PermintaanPBJ::select('id','nomor_ppbj','nama_pbj')
+            ->whereNotIn('id',MappingPBJ::select('id_permintaan_pbj')->get())
+            ->get();
+    }
+
+    public function getAvailablePBJAndCurrentPBJ($currentIdPbj)
+    {
+        return PermintaanPBJ::select('id','nomor_ppbj','nama_pbj')
+            ->whereNotIn('id',MappingPBJ::select('id_permintaan_pbj')->get())
+            ->orWhere('id',$currentIdPbj)
+            ->get();
+    }
 }

@@ -32,7 +32,9 @@ class RefIKK extends Model
     public function getTargetAndRealisasi()
     {
         return RefIKK::select('ref_ikk.id_ikk','kd_ikk','nama_ikk','target','satuan','realisasi')
-                  ->leftJoin('trx_real_ikk','trx_real_ikk.id_ikk','=','ref_ikk.id_ikk')
-                  ->get();
+            ->leftJoin('trx_real_ikk','trx_real_ikk.id_ikk','=','ref_ikk.id_ikk')
+            ->orderBy('kd_ikk')
+            ->groupBy('ref_ikk.id_ikk')
+            ->get();
     }
 }

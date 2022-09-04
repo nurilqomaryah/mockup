@@ -47,4 +47,14 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#id_st').select2({
+                theme: 'bootstrap4'
+            })
+            $('#id').select2({
+                theme: 'bootstrap4'
+            })
+        })
+    </script>
 @endsection

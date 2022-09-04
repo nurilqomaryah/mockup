@@ -37,7 +37,7 @@ class CreateMappingPBJ extends Controller
      */
     public function viewCreateMappingPBJ(): View
     {
-        $listPBJ = $this->permintaanPBJ->all();
+        $listPBJ = $this->permintaanPBJ->getAvailablePBJ();
         $listAnggaran = $this->pkauAnggaran->getPKAUAnggaran();
         return view('crud.mapping_pbj.create_mappingpbj', compact('listPBJ','listAnggaran'));
     }

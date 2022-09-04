@@ -28,8 +28,8 @@ class AnggaranPKAU extends Model
     ];
 
     //untuk mengambil data yang dilempar ke dropdown create mapping ST
-    public function getPKAUAnggaran(){
-        return AnggaranPKAU::select(
+    public function getPKAUAnggaran($kdindex = null){
+        $query = AnggaranPKAU::select(
             'trx_anggaran_pkau.id',
             'ref_pkau.id_pkau',
             'ref_pkau.nama_pkau',
@@ -37,8 +37,11 @@ class AnggaranPKAU extends Model
             'trx_anggaran_pkau.nilai_pkau'
         )
             ->leftJoin('ref_pkau','ref_pkau.id_pkau','=','trx_anggaran_pkau.id_pkau')
-            ->leftJoin('ref_index','ref_index.kdindex','=','trx_anggaran_pkau.kdindex')
-            ->get();
+            ->leftJoin('ref_index','ref_index.kdindex','=','trx_anggaran_pkau.kdindex');
+        if(!is_null($kdindex))
+            $query->where('trx_anggaran_pkau.kdindex',$kdindex);
+
+        return $query->get();
     }
 
     public function getNilaiPKAUByKdIndex($kdindex)

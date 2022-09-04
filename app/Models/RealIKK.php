@@ -45,6 +45,7 @@ class RealIKK extends Model
             'realisasi'
         )
             ->join('ref_ikk','ref_ikk.id_ikk','=','trx_real_ikk.id_ikk')
+            ->limit(1)
             ->get();
     }
 }

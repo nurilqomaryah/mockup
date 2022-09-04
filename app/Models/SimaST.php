@@ -37,5 +37,20 @@ class SimaST extends Model
         'is_aktif'
 
     ];
+
+    public function getAvailableST()
+    {
+        return SimaST::select('id_st','no_surat_tugas','nama_penugasan')
+            ->whereNotIn('id_st',MappingST::select('id_st')->get())
+            ->get();
+    }
+
+    public function getAvailableSTAndCurrentST($currentIdSt)
+    {
+        return SimaST::select('id_st','no_surat_tugas','nama_penugasan')
+            ->whereNotIn('id_st',MappingST::select('id_st')->get())
+            ->orWhere('id_st',$currentIdSt)
+            ->get();
+    }
 }
 

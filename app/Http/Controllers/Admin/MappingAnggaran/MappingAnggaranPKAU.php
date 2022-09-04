@@ -41,7 +41,7 @@ class MappingAnggaranPKAU extends Controller
         $dataPagu = $this->pagu->find($idReferensiIndex);
         $nilaiPkau = $this->anggaranPKAU->getNilaiPKAUByKdIndex($idReferensiIndex);
         $listReferensiIndex = $this->refIndex->all();
-        $listMapping = $this->anggaranPKAU->getPKAUAnggaran();
+        $listMapping = $this->anggaranPKAU->getPKAUAnggaran($idReferensiIndex);
         $listPkau = $this->refPKAU->getAvailablePKAUByKdIndex($idReferensiIndex);
 
         return view('crud.anggaran_pkau.mapping_anggaranpkau',

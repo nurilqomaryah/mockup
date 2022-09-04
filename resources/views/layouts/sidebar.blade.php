@@ -46,6 +46,7 @@
                     <a class="collapse-item text-white" href="{{ route('mapping_pbj.index') }}">Mapping PBJ</a>
                     <a class="collapse-item text-white" href="{{ route('realikk.index') }}">Realisasi IKK</a>
                     <a class="collapse-item text-white" href="{{ route('users.index') }}">User Management</a>
+                    <a class="collapse-item text-white" href="{{ route('syncdata') }}">Sync Data</a>
                 </div>
             </div>
         </li>

@@ -32,7 +32,8 @@ class UpdateMappingPBJ extends Controller
     {
         $idMappingPBJ = $request->route('idMappingPBJ');
         $dataMappingPBJ = $this->mappingPBJ->find($idMappingPBJ);
-        $listPBJ = $this->permintaanPBJ->all();
+        $idPbj = $dataMappingPBJ->id_permintaan_pbj;
+        $listPBJ = $this->permintaanPBJ->getAvailablePBJAndCurrentPBJ($idPbj);
         $listAnggaran = $this->pkauAnggaran->getPKAUAnggaran();
         return view('crud.mapping_pbj.edit_mappingpbj', compact('dataMappingPBJ','listPBJ','listAnggaran'));
     }
