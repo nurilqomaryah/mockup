@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class MappingST extends Model
 {
@@ -45,5 +46,6 @@ class MappingST extends Model
             ->join('ref_index','ref_index.kdindex','=','trx_anggaran_pkau.kdindex')
             ->get();
     }
+
 }
 

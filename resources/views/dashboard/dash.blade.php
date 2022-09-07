@@ -79,11 +79,11 @@
                                             </div>
                                             <div class="col-md-2 text-center">
                                                 <span class="text-magenta">Jumlah ST</span>
-                                                <h5 class="text-magenta">100</h5>
+                                                <h5 class="text-magenta">{{ $pkau->jumlah_st }}</h5>
                                             </div>
                                             <div class="col-md-5 text-center">
                                                 <span class="text-orange">Anggaran</span>
-                                                <h5 class="text-orange">485.980.000</h5>
+                                                <h5 class="text-orange">{{ number_format($pkau->anggaran,2,',','.') }}</h5>
                                             </div>
                                             <div class="col-md-5 text-center">
                                                 <span class="text-blue">Realisasi</span>

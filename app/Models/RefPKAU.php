@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class RefPKAU extends Model
 {
@@ -27,7 +28,15 @@ class RefPKAU extends Model
 
     public function getPKAU()
     {
-        return RefPKAU::select('id_pkau','nama_pkau')->get();
+        return RefPKAU::select(
+            'nama_pkau',
+            DB::raw('count(trx_mapping_st.id) as jumlah_st'),
+            DB::raw('(select sum(nilai_pkau) FROM trx_anggaran_pkau where trx_anggaran_pkau.id_pkau = ref_pkau.id_pkau) as anggaran')
+        )
+            ->leftJoin('trx_anggaran_pkau','ref_pkau.id_pkau','=','trx_anggaran_pkau.id_pkau')
+            ->leftJoin('trx_mapping_st','trx_mapping_st.id_anggaran_pkau','=','trx_anggaran_pkau.id')
+            ->groupBy('nama_pkau')
+            ->get();
     }
 
     public function getAvailablePKAUByKdIndex($kdIndex)

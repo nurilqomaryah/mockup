@@ -62,6 +62,8 @@ Route::middleware('sessionCheck')
         Route::get('gajidetail',[SyncController::class, 'gajidetail']);
         Route::get('permintaanpbj',[SyncController::class, 'permintaanpbj']);
         Route::get('simast',[SyncController::class, 'simast']);
+        Route::get('simatim',[SyncController::class, 'simatim']);
+        Route::get('itemcs',[SyncController::class, 'itemcs']);
 
         //Route User
         Route::middleware('sessionCheck')

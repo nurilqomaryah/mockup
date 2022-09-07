@@ -44,10 +44,20 @@ class AnggaranPKAU extends Model
         return $query->get();
     }
 
+    //untuk dipanggil di mapping anggaran
     public function getNilaiPKAUByKdIndex($kdindex)
     {
         return AnggaranPKAU::select('nilai_pkau')
             ->where('kdindex', $kdindex)
             ->sum('nilai_pkau');
     }
+
+    //untuk menampilkan nilai anggaran PKAU di Dashboard
+    public function getAnggaranPKAU(){
+        return AnggaranPKAU::select('nilai_pkau')
+            ->sum('nilai_pkau')
+            ->groupBy('id_pkau')
+            ->get();
+    }
+
 }

@@ -20,7 +20,9 @@ class AllSchema extends Model
                                 table_name = 't_gaji' OR
                                 table_name = 't_gaji_detail' OR
                                 table_name = 't_permintaan_pbj' OR
-                                table_name = 't_sima_st'
+                                table_name = 't_sima_st' OR
+                                table_name = 't_sima_tim' OR
+                                table_name = 'd_itemcs'
                                 ");
     }
 }

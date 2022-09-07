@@ -8,9 +8,11 @@ use App\Models\BagiPagu;
 use App\Models\CostSheet;
 use App\Models\Gaji;
 use App\Models\GajiDetail;
+use App\Models\ItemCs;
 use App\Models\Pagu;
 use App\Models\PermintaanPBJ;
 use App\Models\SimaST;
+use App\Models\SimaTim;
 use App\Models\SuratTugas;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
@@ -40,7 +42,8 @@ class SyncController extends Controller
         $this->gajidetail();
         $this->permintaanpbj();
         $this->simast();
-
+        $this->simatim();
+        $this->itemcs();
 
         return redirect()
             ->route('syncadmin');
@@ -359,6 +362,77 @@ class SyncController extends Controller
             $res->ro_kode = $insert['ro_kode'];
             $res->ro_uraian = $insert['ro_uraian'];
             $res->kdsatker = $insert['kdsatker'];
+            $res->is_aktif = $insert['is_aktif'];
+            $res->save();
+        }
+
+        return redirect()
+            ->route('syncadmin');
+    }
+
+    public function simatim()
+    {
+        // Ambil data dari BISMA
+        $result = Http::get('https://apip.bpkp.go.id/bewise/mockup/sima_tim')->collect();
+
+        // Menghitung jumlah data dari BISMA
+        $count = count($result);
+
+        // Menghitung jumlah data pada database
+        $totalLocalData = SimaTim::select('id_tim')
+            ->count('id_tim');
+
+        if($totalLocalData != $count)
+            SimaTim::truncate();
+
+        // Update tabel t_sima_tim dari data BISMA
+        foreach ($result as $insert) {
+//            $res = SimaTim::firstOrNew(['id_tim' => $insert['id_tim']]);
+            $res = new SimaTim();
+            $res->id_tim = $insert['id_tim'];
+            $res->sumber_data = $insert['sumber_data'];
+            $res->id_st = $insert['id_st'];
+            $res->nama = $insert['nama'];
+            $res->nip = $insert['nip'];
+            $res->peran_jabatan = $insert['peran_jabatan'];
+            $res->golongan = $insert['golongan'];
+            $res->no_urut = $insert['no_urut'];
+            $res->status = $insert['status'];
+            $res->save();
+        }
+
+        return redirect()
+            ->route('syncadmin');
+    }
+
+    public function itemcs()
+    {
+        // Ambil data dari BISMA
+        $result = Http::get('https://apip.bpkp.go.id/bewise/mockup/itemcs')->collect();
+
+        // Menghitung jumlah data dari BISMA
+        $count = count($result);
+
+        // Menghitung jumlah data pada database
+        $totalLocalData = ItemCs::select('id')
+            ->count('id');
+
+        if($totalLocalData != $count)
+            ItemCs::truncate();
+
+        // Update tabel d_itemcs dari data BISMA
+        foreach ($result as $insert) {
+            $res = ItemCs::firstOrNew(['id' => $insert['id']]);
+            $res->id_st = $insert['id_st'];
+            $res->id_cs = $insert['id_cs'];
+            $res->nourut = $insert['nourut'];
+            $res->nospd = $insert['nospd'];
+            $res->nama = $insert['nama'];
+            $res->nip = $insert['nip'];
+            $res->tglberangkat = $insert['tglberangkat'];
+            $res->tglkembali = $insert['tglkembali'];
+            $res->jmlhari = $insert['jmlhari'];
+            $res->jumlah = $insert['jumlah'];
             $res->is_aktif = $insert['is_aktif'];
             $res->save();
         }
