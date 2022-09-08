@@ -10,7 +10,7 @@ class SimaTim extends Model
     use HasFactory;
 
     protected $table = 't_sima_tim';
-    protected $primaryKey = 'id_tim';
+    //protected $primaryKey = 'id_tim';
     public $timestamps = false;
 
     /**

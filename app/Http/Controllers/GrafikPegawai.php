@@ -1,34 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\RefIKK;
-use App\Models\PenyerapanAnggaran;
-use App\Models\RefPKAU;
+use App\Models\HariDL;
+use App\Models\HariPenugasan;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\View;
 
 class GrafikPegawai extends Controller
 {
-    protected $ikk;
-    protected $penyerapanangg;
-    protected $pkau;
+    protected $haripenugasan;
+    protected $haridinas;
 
     public function __construct()
     {
-        $this->ikk = new RefIKK();
-        $this->penyerapanangg = new PenyerapanAnggaran();
-        $this->pkau = new RefPKAU();
+        $this->haripenugasan = new HariPenugasan();
+        $this->haridinas = new HariDL();
     }
 
-    public function chart()
+    public function viewGrafikPegawaiB1()
     {
-        $result = \DB::table('stocks')
-            ->where('stockName','=','Infosys')
-            ->orderBy('stockYear', 'ASC')
-            ->get();
-        return response()->json($result);
+        $data1['grafikST'] = $this->haripenugasan->getHariPenugasanB1();
+        $data2['grafikDL'] = $this->haridinas->getHariDLB1();
+        return view('grafik.grafikpegawai_b1', $data1, $data2);
+    }
+
+    public function viewGrafikPegawaiB2()
+    {
+        $data1['grafikST'] = $this->haripenugasan->getHariPenugasanB2();
+        $data2['grafikDL'] = $this->haridinas->getHariDLB2();
+        return view('grafik.grafikpegawai_b2', $data1, $data2);
+    }
+
+    public function viewGrafikPegawaiTU()
+    {
+        $data1['grafikST'] = $this->haripenugasan->getHariPenugasanTU();
+        $data2['grafikDL'] = $this->haridinas->getHariDLTU();
+        return view('grafik.grafikpegawai_tu', $data1, $data2);
     }
 
 }

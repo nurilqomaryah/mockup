@@ -81,13 +81,23 @@
                                                 <span class="text-magenta">Jumlah ST</span>
                                                 <h5 class="text-magenta">{{ $pkau->jumlah_st }}</h5>
                                             </div>
-                                            <div class="col-md-5 text-center">
+                                            <div class="col-md-4 text-center">
                                                 <span class="text-orange">Anggaran</span>
                                                 <h5 class="text-orange">{{ number_format($pkau->anggaran,2,',','.') }}</h5>
                                             </div>
-                                            <div class="col-md-5 text-center">
+                                            <div class="col-md-4 text-center">
                                                 <span class="text-blue">Realisasi</span>
-                                                <h5 class="text-blue">201.000.000</h5>
+                                                <h5 class="text-blue">{{ number_format($pkau->realisasi,2,',','.') }}</h5>
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                <span class="text-magenta">%</span>
+                                                <h5 class="text-magenta">
+                                                    @if($pkau->anggaran == 0)
+                                                        0%
+                                                    @else()
+                                                    {{number_format(($pkau->realisasi/$pkau->anggaran)*100,2,',','.') }}
+                                                    @endif
+                                                </h5>
                                             </div>
                                         </div>
                                     </div>

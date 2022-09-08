@@ -15,31 +15,49 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">
+    <li class="nav-item @if(request()->route()->uri == 'grafik-pegawai') OR @elseif(request()->route()->uri == 'grafik-keuangan') active @endif">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages">
             <i class="fas fa-fw fa-book"></i>
             <span>Bidang 1</span>
         </a>
+        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+            <div class="bg-blue py-2 collapse-inner rounded">
+                <a class="collapse-item text-white" href="{{ route('grafik-pegawai-b1') }}">Pegawai</a>
+                <a class="collapse-item text-white" href="{{ route('grafik-keuangan') }}">Keuangan</a>
+            </div>
+        </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages">
             <i class="fas fa-fw fa-book"></i>
             <span>Bidang 2</span>
         </a>
+        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+            <div class="bg-blue py-2 collapse-inner rounded">
+                <a class="collapse-item text-white" href="{{ route('grafik-pegawai-b2') }}">Pegawai</a>
+                <a class="collapse-item text-white" href="{{ route('grafik-keuangan') }}">Keuangan</a>
+            </div>
+        </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages">
             <i class="fas fa-fw fa-table"></i>
             <span>Bagian Umum</span>
         </a>
+        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+            <div class="bg-blue py-2 collapse-inner rounded">
+                <a class="collapse-item text-white" href="{{ route('grafik-pegawai-tu') }}">Pegawai</a>
+                <a class="collapse-item text-white" href="{{ route('grafik-keuangan') }}">Keuangan</a>
+            </div>
+        </div>
     </li>
     @if(session('access-data-login')[0]->role_id == '2')
         <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="false" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-screwdriver"></i>
                 <span>Setting</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+            <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
                 <div class="bg-blue py-2 collapse-inner rounded">
                     <a class="collapse-item text-white" href="{{ route('mapping_anggaran.index') }}">Anggaran PKAU</a>
                     <a class="collapse-item text-white" href="{{ route('mappingst.index') }}">Mapping ST</a>

@@ -382,12 +382,12 @@ class SyncController extends Controller
         $totalLocalData = SimaTim::select('id_tim')
             ->count('id_tim');
 
-        if($totalLocalData != $count)
+
             SimaTim::truncate();
 
         // Update tabel t_sima_tim dari data BISMA
         foreach ($result as $insert) {
-//            $res = SimaTim::firstOrNew(['id_tim' => $insert['id_tim']]);
+//            $res = SimaTim::New(['id_tim' => $insert['id_tim']]);
             $res = new SimaTim();
             $res->id_tim = $insert['id_tim'];
             $res->sumber_data = $insert['sumber_data'];

@@ -29,13 +29,15 @@ class RefPKAU extends Model
     public function getPKAU()
     {
         return RefPKAU::select(
-            'nama_pkau',
+            'ref_pkau.nama_pkau',
             DB::raw('count(trx_mapping_st.id) as jumlah_st'),
-            DB::raw('(select sum(nilai_pkau) FROM trx_anggaran_pkau where trx_anggaran_pkau.id_pkau = ref_pkau.id_pkau) as anggaran')
+            DB::raw('(select sum(nilai_pkau) FROM trx_anggaran_pkau where trx_anggaran_pkau.id_pkau = ref_pkau.id_pkau) as anggaran'),
+            DB::raw('(select sum(realisasi) FROM vw_realisasi_pkau where vw_realisasi_pkau.id_pkau = ref_pkau.id_pkau) as realisasi')
         )
             ->leftJoin('trx_anggaran_pkau','ref_pkau.id_pkau','=','trx_anggaran_pkau.id_pkau')
             ->leftJoin('trx_mapping_st','trx_mapping_st.id_anggaran_pkau','=','trx_anggaran_pkau.id')
-            ->groupBy('nama_pkau')
+            ->leftJoin('vw_realisasi_pkau','vw_realisasi_pkau.id_pkau','=','ref_pkau.id_pkau')
+            ->groupBy('ref_pkau.nama_pkau')
             ->get();
     }
 

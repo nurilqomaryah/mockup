@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\SyncController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\GrafikKeuangan;
+use App\Http\Controllers\GrafikPegawai;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -130,5 +132,33 @@ Route::middleware('sessionCheck')
                 Route::post('/create/submit', [CreateMappingPBJ::class, 'onSubmitCreateMappingPBJ'])->name('mapping_pbj.store');
                 Route::post('/update/submit', [UpdateMappingPBJ::class, 'onSubmitUpdateMappingPBJ'])->name('mapping_pbj.update');
                 Route::post('/destroy/{idMappingPBJ}', [DeleteMappingPBJ::class, 'onSubmitDeleteMappingPBJ'])->name('mapping_pbj.destroy');
+            });
+
+        //Route Grafik Pegawai Bidang 1
+        Route::middleware('sessionCheck')
+            ->prefix('grafik-pegawai-b1')
+            ->group(function (){
+                Route::get('/', [GrafikPegawai::class,'viewGrafikPegawaiB1'])->name('grafik-pegawai-b1');
+            });
+
+        //Route Grafik Pegawai Bidang 2
+        Route::middleware('sessionCheck')
+            ->prefix('grafik-pegawai-b2')
+            ->group(function (){
+                Route::get('/', [GrafikPegawai::class,'viewGrafikPegawaiB2'])->name('grafik-pegawai-b2');
+            });
+
+        //Route Grafik Pegawai Bidang TU
+        Route::middleware('sessionCheck')
+            ->prefix('grafik-pegawai-tu')
+            ->group(function (){
+                Route::get('/', [GrafikPegawai::class,'viewGrafikPegawaiTU'])->name('grafik-pegawai-tu');
+            });
+
+        //Route Grafik Keuangan
+        Route::middleware('sessionCheck')
+            ->prefix('grafik-keuangan')
+            ->group(function (){
+                Route::get('/', [GrafikKeuangan::class,'viewGrafikHariDL'])->name('grafik-keuangan');
             });
     });
