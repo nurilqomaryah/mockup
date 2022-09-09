@@ -155,10 +155,24 @@ Route::middleware('sessionCheck')
                 Route::get('/', [GrafikPegawai::class,'viewGrafikPegawaiTU'])->name('grafik-pegawai-tu');
             });
 
-        //Route Grafik Keuangan
+        //Route Grafik Keuangan Bidang 1
         Route::middleware('sessionCheck')
-            ->prefix('grafik-keuangan')
+            ->prefix('grafik-keuangan-b1')
             ->group(function (){
-                Route::get('/', [GrafikKeuangan::class,'viewGrafikHariDL'])->name('grafik-keuangan');
+                Route::get('/', [GrafikKeuangan::class,'viewGrafikKeuanganB1'])->name('grafik-keuangan-b1');
+            });
+
+        //Route Grafik Keuangan Bidang 2
+        Route::middleware('sessionCheck')
+            ->prefix('grafik-keuangan-b2')
+            ->group(function (){
+                Route::get('/', [GrafikKeuangan::class,'viewGrafikKeuanganB2'])->name('grafik-keuangan-b2');
+            });
+
+        //Route Grafik Keuangan Bidang TU
+        Route::middleware('sessionCheck')
+            ->prefix('grafik-keuangan-tu')
+            ->group(function (){
+                Route::get('/', [GrafikKeuangan::class,'viewGrafikKeuanganTU'])->name('grafik-keuangan-tu');
             });
     });

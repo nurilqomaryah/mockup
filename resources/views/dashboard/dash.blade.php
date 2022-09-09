@@ -1,6 +1,13 @@
 @extends('layouts.crud')
 @section('main')
     <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success">
+                Selamat datang <u>{{ \Illuminate\Support\Facades\Session::get('username') }}</u>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

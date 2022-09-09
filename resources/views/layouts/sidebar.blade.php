@@ -15,7 +15,7 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="nav-item @if(request()->route()->uri == 'grafik-pegawai') OR @elseif(request()->route()->uri == 'grafik-keuangan') active @endif">
+    <li class="nav-item @if(request()->route()->uri == 'grafik-pegawai-b1') active @elseif(request()->route()->uri == 'grafik-keuangan-b1') active @endif">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages">
             <i class="fas fa-fw fa-book"></i>
             <span>Bidang 1</span>
@@ -23,11 +23,11 @@
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
             <div class="bg-blue py-2 collapse-inner rounded">
                 <a class="collapse-item text-white" href="{{ route('grafik-pegawai-b1') }}">Pegawai</a>
-                <a class="collapse-item text-white" href="{{ route('grafik-keuangan') }}">Keuangan</a>
+                <a class="collapse-item text-white" href="{{ route('grafik-keuangan-b1') }}">Keuangan</a>
             </div>
         </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(request()->route()->uri == 'grafik-pegawai-b2') active @elseif(request()->route()->uri == 'grafik-keuangan-b2') active @endif">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages">
             <i class="fas fa-fw fa-book"></i>
             <span>Bidang 2</span>
@@ -35,24 +35,29 @@
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
             <div class="bg-blue py-2 collapse-inner rounded">
                 <a class="collapse-item text-white" href="{{ route('grafik-pegawai-b2') }}">Pegawai</a>
-                <a class="collapse-item text-white" href="{{ route('grafik-keuangan') }}">Keuangan</a>
+                <a class="collapse-item text-white" href="{{ route('grafik-keuangan-b2') }}">Keuangan</a>
             </div>
         </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(request()->route()->uri == 'grafik-pegawai-tu') active @elseif(request()->route()->uri == 'grafik-keuangan-tu') active @endif">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-fw fa-book"></i>
             <span>Bagian Umum</span>
         </a>
         <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
             <div class="bg-blue py-2 collapse-inner rounded">
                 <a class="collapse-item text-white" href="{{ route('grafik-pegawai-tu') }}">Pegawai</a>
-                <a class="collapse-item text-white" href="{{ route('grafik-keuangan') }}">Keuangan</a>
+                <a class="collapse-item text-white" href="{{ route('grafik-keuangan-tu') }}">Keuangan</a>
             </div>
         </div>
     </li>
     @if(session('access-data-login')[0]->role_id == '2')
-        <li class="nav-item">
+        <li class="nav-item @if(request()->route()->uri == 'mapping_anggaran.index') active
+                            @elseif(request()->route()->uri == 'mappingst.index') active
+                            @elseif(request()->route()->uri == 'mapping_pbj.index') active
+                            @elseif(request()->route()->uri == 'realikk.index') active
+                            @elseif(request()->route()->uri == 'users.index') active
+                            @elseif(request()->route()->uri == 'syncdata') active @endif">
             <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="false" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-screwdriver"></i>
                 <span>Setting</span>

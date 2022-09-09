@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
         <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
         <script src="{{ asset('js/highcharts/highcharts.js') }}"></script>
+
     </head>
     <body id="page-top">
     <div id="wrapper">

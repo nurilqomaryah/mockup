@@ -7,7 +7,7 @@
                     <center><h5 class="m-0 font-weight-bold text-primary">Dashboard Keuangan</h5></center>
                 </div>
                 <div class="card-body">
-                    <div id="grafik-keuangan-1" style="min-height: 70vh; width: 100%;"></div>
+                    <div id="grafik-keuangan-2" style="min-height: 70vh; width: 100%;"></div>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
                     thousandsSep: '.'
                 }
             });
-            Highcharts.chart('grafik-keuangan-1', {
+            Highcharts.chart('grafik-keuangan-2', {
                 colors: [
                     '#454cb3',
                     '#fea00a',
@@ -33,14 +33,14 @@
                     text: 'Penyerapan Anggaran'
                 },
                 subtitle: {
-                    text: 'Bidang Penelitian Pengawasan'
+                    text: 'Bidang Tata Usaha'
                 },
                 xAxis: {
                     categories: [
-                                    @foreach($listUraian as $data)
-                                        "{{ $data->uraian }}",
-                                    @endforeach
-                                ]
+                        @foreach($listUraian as $data)
+                            "{{ $data->uraian }}",
+                        @endforeach
+                    ]
                 },
                 yAxis: {
                     min: 0,

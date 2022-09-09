@@ -7,10 +7,10 @@
                     <center><h5 class="m-0 font-weight-bold text-primary">Dashboard Pegawai</h5></center>
                 </div>
                 <div class="card-body">
-                    <div id="grafik-hari-penugasan-3"></div>
+                    <div id="grafik-hari-penugasan-3" style="min-height: 40vh; width: 100%;"></div>
                 </div>
                 <div class="card-body">
-                    <div id="grafik-hari-dinas-3"></div>
+                    <div id="grafik-hari-dinas-3" style="min-height: 40vh; width: 100%;"></div>
                 </div>
             </div>
         </div>
