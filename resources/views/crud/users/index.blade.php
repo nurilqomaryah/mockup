@@ -16,22 +16,22 @@
                         @endif
                     </div>
                     <div class="d-flex flex-row-reverse">
-                        <a style="margin-bottom: 1em;" href="{{ route('users.create') }}" class="btn btn-primary btn-sm pull-right">Tambah Data</a>
+                        <a style="margin-bottom: 1em;" href="{{ route('users.create') }}" class="btn button-orange btn-sm pull-right">Tambah Data</a>
                     </div>
                         <table id="datauser" class="table table-striped table-bordered" style="width: 100%">
                             <thead>
-                            <tr>
+                            <tr style="text-align: center">
                                 <th>No</th>
                                 <th>Username</th>
                                 <th>Kode Satker</th>
                                 <th>Role</th>
-                                <th>Aksi</th>
-                                <th></th>
+                                <th>Ubah</th>
+                                <th>Hapus</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
-                                <tr>
+                                <tr style="text-align: center">
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->username}}</td>
                                     <td>{{$user->kd_satker}}</td>

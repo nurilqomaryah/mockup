@@ -15,34 +15,34 @@
                         @endif
                     </div>
                     <div class="d-flex flex-row-reverse">
-                        <a style="margin-bottom: 1em;" href="{{ route('realikk.create')}}" class="btn btn-primary btn-sm pull-right">Tambah Data</a>
+                        <a style="margin-bottom: 1em;" href="{{ route('realikk.create')}}" class="btn button-orange btn-sm pull-right">Tambah Data</a>
                     </div>
                     <table id="data_realikk" class="table table-striped table-bordered" style="width: 100%">
                         <thead>
-                        <tr>
+                        <tr style="text-align: center">
                             <th>No</th>
                             <th>Kode IKK</th>
                             <th>Nama IKK</th>
                             <th>Tahun</th>
                             <th>Bulan</th>
                             <th>Realisasi</th>
-                            <th>Aksi</th>
-                            <th></th>
+                            <th>Ubah</th>
+                            <th>Hapus</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($listRealisasiIKK as $realisasiIKK)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $realisasiIKK->kd_ikk }}</td>
+                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                <td style="text-align: center">{{ $realisasiIKK->kd_ikk }}</td>
                                 <td>{{ $realisasiIKK->nama_ikk }}</td>
-                                <td>{{ $realisasiIKK->tahun }}</td>
-                                <td>{{ $realisasiIKK->bulan }}</td>
-                                <td>{{ $realisasiIKK->realisasi }}</td>
-                                <td>
+                                <td style="text-align: center">{{ $realisasiIKK->tahun }}</td>
+                                <td style="text-align: center">{{ bulan($realisasiIKK->bulan) }}</td>
+                                <td style="text-align: center">{{ $realisasiIKK->realisasi }}</td>
+                                <td style="text-align: center">
                                     <a href="{{ route('realikk.edit',['idRealisasiIKK'=>$realisasiIKK->id_real_ikk]) }}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
-                                <td>
+                                <td style="text-align: center">
                                     <form action="{{ route('realikk.destroy', ['idRealisasiIKK'=>$realisasiIKK->id_real_ikk] )}}" method="post">
                                         @csrf
                                         <input class="btn btn-danger btn-sm" type="submit" value="Delete">

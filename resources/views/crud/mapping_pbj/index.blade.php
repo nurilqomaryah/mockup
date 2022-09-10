@@ -15,32 +15,32 @@
                         @endif
                     </div>
                     <div class="d-flex flex-row-reverse">
-                        <a style="margin-bottom: 1em;" href="{{ route('mapping_pbj.create')}}" class="btn btn-primary btn-sm pull-right">Tambah Data</a>
+                        <a style="margin-bottom: 1em;" href="{{ route('mapping_pbj.create')}}" class="btn button-orange btn-sm pull-right">Tambah Data</a>
                     </div>
                     <table id="data_mappingpbj" class="table table-striped table-bordered" style="width: 100%">
                         <thead>
-                        <tr>
+                        <tr style="text-align: center">
                             <th>No</th>
                             <th>No PBJ</th>
                             <th>Nama PBJ</th>
                             <th>Nama PKAU</th>
                             <th>Uraian Anggaran</th>
-                            <th>Aksi</th>
-                            <th></th>
+                            <th>Ubah</th>
+                            <th>Hapus</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($listMappingPBJ as $mappingPBJ)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td style="text-align: center">{{ $loop->iteration }}</td>
                                 <td>{{ $mappingPBJ->nomor_ppbj }}</td>
                                 <td>{{ $mappingPBJ->nama_pbj }}</td>
                                 <td>{{ $mappingPBJ->nama_pkau }}</td>
                                 <td>{{ $mappingPBJ->uraian }}</td>
-                                <td>
+                                <td style="text-align: center">
                                     <a href="{{ route('mapping_pbj.edit',['idMappingPBJ'=>$mappingPBJ->id]) }}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
-                                <td>
+                                <td style="text-align: center">
                                     <form action="{{ route('mapping_pbj.destroy', ['idMappingPBJ'=>$mappingPBJ->id] )}}" method="post">
                                         @csrf
                                         <input class="btn btn-danger btn-sm" type="submit" value="Delete">

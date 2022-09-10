@@ -2,14 +2,6 @@
 
 @section('main')
 <div class="row">
-    <div class="col-md-12">
-{{--        <div class="alert alert-success">--}}
-{{--            Selamat datang <u>{{ \Illuminate\Support\Facades\Session::get('nama') }}</u>--}}
-{{--        </div>--}}
-    </div>
-</div>
-
-<div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow mb-4">
             <div class="card-header align-items-center justify-content-between">
@@ -24,11 +16,11 @@
                     @endif
                 </div>
                 <div class="d-flex flex-row-reverse">
-                    <a style="margin-bottom: 1em;" href="{{ route('syncdata') }}" class="btn btn-primary btn-sm pull-right">Sync Data</a>
+                    <a style="margin-bottom: 1em;" href="{{ route('syncdata') }}" class="btn button-orange btn-sm pull-right">Sync Data</a>
                 </div>
                 <table id="syncdata" class="table table-striped table-bordered" style="width: 100%">
                     <thead>
-                    <tr>
+                    <tr style="text-align: center">
                         <th>No</th>
                         <th>Nama Tabel</th>
                         <th>Jml Data BISMA</td>
@@ -38,7 +30,7 @@
                     </thead>
                     <tbody>
                     @foreach($result as $res)
-                        <tr>
+                        <tr style="text-align: center">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $res->TABLE_NAME }}</td>
                             <td>{{ $res->DATA_BISMA }}</td>

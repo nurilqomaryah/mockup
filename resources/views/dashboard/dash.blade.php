@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="alert alert-success">
-                Selamat datang <u>{{ \Illuminate\Support\Facades\Session::get('username') }}</u>
+                Selamat datang <u>{{ \Illuminate\Support\Facades\Session::get('access-data-login')[0]->username }}</u>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header text-center">{{ __('Anggaran PKAU') }}</div>
+                    <div class="card-header text-center font-weight-bold">{{ __('Anggaran PKAU') }}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('mapping_anggaran.store') }}">
                             @csrf
@@ -51,15 +51,17 @@
                             </div>
                             <div class="form-group row pt-3">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="submit" class="btn button-blue">
                                         <i class="fa fa-save"></i> {{ __('Simpan') }}
                                     </button>
+                                    &nbsp; &nbsp;
+                                    <a href="{{ route('mapping_anggaran.index')}}" class="btn button-orange"><i class="fa fa-backward"></i>  Kembali</a>
                                 </div>
                             </div>
                         </form>
                         <table id="tabel_mapping" class="table table-striped table-bordered" style="width: 100%">
                             <thead>
-                            <tr>
+                            <tr style="text-align: center">
                                 <th>No</th>
                                 <th>Kode PKAU</th>
                                 <th>Nama PKAU</th>
@@ -70,11 +72,11 @@
                             <tbody>
                             @foreach($listMapping as $mappingPKAU)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{$mappingPKAU->id_pkau}}</td>
+                                    <td style="text-align: center">{{ $loop->iteration }}</td>
+                                    <td style="text-align: center">{{$mappingPKAU->id_pkau}}</td>
                                     <td>{{$mappingPKAU->nama_pkau}}</td>
                                     <td class="text-right">{{number_format($mappingPKAU->nilai_pkau,2,',','.')}}</td>
-                                    <td>
+                                    <td style="text-align: center">
                                         <form action="{{ route('mapping_anggaran.destroy', ['idAnggaranPKAU'=>$mappingPKAU->id] )}}" method="post">
                                             @csrf
                                             <input class="btn btn-danger btn-sm" type="submit" value="Delete">

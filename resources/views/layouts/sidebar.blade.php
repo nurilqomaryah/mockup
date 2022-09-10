@@ -52,12 +52,13 @@
         </div>
     </li>
     @if(session('access-data-login')[0]->role_id == '2')
-        <li class="nav-item @if(request()->route()->uri == 'mapping_anggaran.index') active
-                            @elseif(request()->route()->uri == 'mappingst.index') active
-                            @elseif(request()->route()->uri == 'mapping_pbj.index') active
-                            @elseif(request()->route()->uri == 'realikk.index') active
-                            @elseif(request()->route()->uri == 'users.index') active
-                            @elseif(request()->route()->uri == 'syncdata') active @endif">
+        <li class="nav-item {{ request()->route()->uri }} @if(request()->route()->uri == 'mapping-anggaran') active
+                            @elseif(request()->route()->uri == 'mapping-st') active
+                            @elseif(request()->route()->uri == 'mapping-pbj') active
+                            @elseif(request()->route()->uri == 'real-ikk') active
+                            @elseif(request()->route()->uri == 'users') active
+                            @elseif(request()->route()->uri == 'syncadmin') active
+                            @endif">
             <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages4" aria-expanded="false" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-screwdriver"></i>
                 <span>Setting</span>
