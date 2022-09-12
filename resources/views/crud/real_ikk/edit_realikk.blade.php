@@ -15,7 +15,7 @@
                                 <div class="col-md-8">
                                     <select name="id-ikk" class="form-control" id="id_ikk" autofocus>
                                         @foreach($listReferensiIKK as $referensiIKK)
-                                            <option value="{{$referensiIKK->id_ikk}}" {{$dataRealisasiIKK->id_real_ikk == $referensiIKK->id_ikk ? 'selected' : ''}}>
+                                            <option value="{{$referensiIKK->id_ikk}}" {{$dataRealisasiIKK->id_ikk == $referensiIKK->id_ikk ? 'selected' : ''}}>
                                                 {{$referensiIKK->id_ikk}} - {{$referensiIKK->nama_ikk}}
                                             </option>
                                         @endforeach

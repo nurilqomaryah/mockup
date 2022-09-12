@@ -6,15 +6,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Auth;
-use Carbon\Carbon;
-use Session;
-use \Validator;
-use Response;
-use Illuminate\Support\Facades\Input;
 use App\Models\Users;
 use App\Models\Role;
-use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -66,7 +59,7 @@ class UserController extends Controller
         $user = new Users([
             'id_role' => $request->get('id'),
             'username' => $request->get('username'),
-            'password' => Hash::make($request->get('password'))
+            'password' => sha1(md5($request->get('password')))
         ]);
         $user->save();
 
@@ -114,7 +107,7 @@ class UserController extends Controller
             'id' => 'required',
             'id_role'=>'required',
             'username'=>'required',
-            'password'=>'required|min:5'
+            'password'=>'nullable|min:5'
         ]);
 
         $id = $request->post('id');
@@ -122,7 +115,8 @@ class UserController extends Controller
         $user = Users::find($id);
         $user->role_id = $request->post('id_role');
         $user->username = $request->post('username');
-        $user->password = Hash::make($request->post('password'));
+        if(!is_null($request->get('password')))
+            $user->password = sha1(md5($request->get('password')));
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User updated!');

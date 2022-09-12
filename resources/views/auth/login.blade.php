@@ -58,15 +58,16 @@
                             </div>
                         </div>
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-3">
-                                <button type="submit" class="btn button-blue col-md-4"><i class="fa fa-lock"></i>
+                            <div class="col-md-12 text-center">
+                                &nbsp; &nbsp;
+                                <button type="submit" class="btn button-blue col-md-3"><i class="fa fa-lock"></i>
                                     {{ __('Login') }}
                                 </button> &nbsp; &nbsp;
-                                <a href="{{ route('register') }}">
-                                    <button type="button" class="btn button-orange col-md-4"><i class="fa fa-user"></i>
-                                        {{ __('Register') }}
-                                    </button>
-                                </a>
+{{--                                <a href="{{ route('register') }}">--}}
+{{--                                    <button type="button" class="btn button-orange col-md-4"><i class="fa fa-user"></i>--}}
+{{--                                        {{ __('Register') }}--}}
+{{--                                    </button>--}}
+{{--                                </a>--}}
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

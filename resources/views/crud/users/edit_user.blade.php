@@ -37,7 +37,7 @@
                                 <div class="col-md-8">
                                     <select name="id_role" class="form-control" id="id_role" autofocus>
                                         @foreach($role as $key)
-                                            <option value="{{$key->id}}" {{$edit_user->id_role == $key->id ? 'selected' : ''}}>{{$key->nama_role}}</option>
+                                            <option value="{{$key->id}}" {{$edit_user->role_id == $key->id ? 'selected' : ''}}>{{$key->nama_role}}</option>
                                         @endforeach
                                     </select>
                                 </div>
