@@ -6,10 +6,10 @@
 {{--                <img class="img-responsive" src="{{url('/images/BPKP_Logo.png')}}" width="15%">--}}
 {{--        </div>--}}
     <div class="row">
-        <div class="col-md-8 offset-4" style="margin-top: 12em; margin-right: 7em;">
-            <h2 style="text-align: center;">APLIKASI MONITORING CAPAIAN </h2>
-            <h2 style="text-align: center;">KINERJA DAN KEUANGAN PUSLITBANGWAS </h2>
-            <h2 style="text-align: center;">(MOCKUP) </h2>
+        <div class="col-md-8 offset-4" style="margin-top: 12em; margin-right: 7em; background-color: white;">
+            <h2 style="text-align: center;"><span class="judul orange">MO</span><span class="judul blue">NITORING </span><span  class="judul orange">C</span><span class="judul blue">APAIAN</span> </h2>
+            <h2 style="text-align: center;"><span class="judul orange">K</span><span class="judul blue">INERJA DAN KE</span><span class="judul orange">U</span><span class="judul blue">ANGAN </span><span class="judul orange">P</span><span class="judul blue">KAU</span> </h2>
+            <h2 style="text-align: center;"><span class="judul blue">(</span><span class="judul orange">MOCKUP</span><span class="judul blue">)</span> </h2>
             <div class="card" style="margin-top: 3em;">
                 <div class="card-header text-center">{{ __('Silakan melakukan Login terlebih dahulu') }}</div>
                 <div class="card-body">
@@ -63,16 +63,6 @@
                                 <button type="submit" class="btn button-blue col-md-3"><i class="fa fa-lock"></i>
                                     {{ __('Login') }}
                                 </button> &nbsp; &nbsp;
-{{--                                <a href="{{ route('register') }}">--}}
-{{--                                    <button type="button" class="btn button-orange col-md-4"><i class="fa fa-user"></i>--}}
-{{--                                        {{ __('Register') }}--}}
-{{--                                    </button>--}}
-{{--                                </a>--}}
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>

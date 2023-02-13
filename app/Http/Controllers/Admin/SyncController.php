@@ -29,7 +29,7 @@ class SyncController extends Controller
     public function viewSyncData(){
         $schemaTable = $this->allSchema->getAllTables();
         $result = $this->__combineDataBismaAndDataLocal($schemaTable);
-        return View::make('syncdata', ['result' => $result]);
+        return View::make('syncadmin', ['result' => $result]);
     }
 
     public function syncData()

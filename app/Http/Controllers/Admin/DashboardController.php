@@ -7,6 +7,7 @@ use App\Models\RealisasiPKAU;
 use App\Models\RefIKK;
 use App\Models\PenyerapanAnggaran;
 use App\Models\RefPKAU;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
@@ -24,13 +25,14 @@ class DashboardController extends Controller
 
     public function viewDashboard()
     {
+        $user = Auth::user()->satker->kode_satker;
 
         $listIKK = $this->ikk->getTargetAndRealisasi();
         $penyerapanAnggaran = $this->penyerapanangg->getPenyerapanAnggaran();
         $listPKAU = $this->pkau->getPKAU();
 
         return View::make('dashboard.dash')
-            ->with(compact('listIKK','penyerapanAnggaran','listPKAU'));
+            ->with(compact('listIKK','penyerapanAnggaran','listPKAU','user'));
     }
 
 }

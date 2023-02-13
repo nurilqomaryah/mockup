@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Users extends Model
+class User extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 't_users';
+    protected $table = 'users';
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $hidden = [
@@ -34,11 +34,15 @@ class Users extends Model
 
     protected $fillable = [
         'id',
+        'nipbaru',
         'username',
         'password',
+        'nama',
         'remember_token',
         'role_id',
         'kd_satker',
+        'key_sort_unit',
+        'token_sima',
         'created_at',
         'updated_at',
         'deleted_at'
@@ -46,12 +50,12 @@ class Users extends Model
 
     public function role()
     {
-        return $this->belongsTo('App\Models\Role','id');
+        return $this->belongsTo('App\Models\Role','role_id');
     }
 
-    public function kodeSatker()
+    public function satker()
     {
-
+        return $this?->belongsTo('App\Models\Satker','key_sort_unit','key_sort_unit');
     }
 
     public function hasRole($roles)

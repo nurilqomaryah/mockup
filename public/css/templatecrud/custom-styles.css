@@ -13,6 +13,7 @@ html{
 }
 
 body {
+    color: #212529;
     height: 100% !important;
     font-family: 'Open Sans', sans-serif;
     background: #09192A;
@@ -455,4 +456,32 @@ font-size: 19px;
 }
 }
 
+hr.myhrline{
+ color: black;
+ margin: 0;
+ height: 1px;
+ background: black;
+ border: none;
+}
+
+.card.pkau:hover{
+    transform:scale(1.01);
+    cursor: pointer;
+}
+
+.anggaran:hover{
+    cursor: pointer;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+}
+
+.judul.orange{
+    color:orange;
+    font-weight: bold;
+}
+
+.judul.blue{
+    color:darkblue;
+    font-weight: bold;
+}
 
