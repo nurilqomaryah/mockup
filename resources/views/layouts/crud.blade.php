@@ -1,5 +1,10 @@
 <html>
     <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="{{asset('images/BPKP_Logo.png')}}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/BPKP_Logo.png')}}">
+        <meta property="og:title" content="MOCKUP">
+        <meta property="og:description" content="Monitoring Kinerja dan Keuangan PKAU">
         <title>MOCKUP</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.13.2/date-1.3.0/fc-4.2.1/fh-3.3.1/r-2.4.0/sc-2.1.0/datatables.min.css"/>
@@ -15,6 +20,10 @@
     </head>
     <body id="page-top">
             <style>
+            #chartdiv {
+              width: 100%;
+              height: 75vh;
+            }
               .table  {
                 color: #212529;
             }
@@ -45,6 +54,10 @@
     <script type="text/javascript" src="{{ URL::asset('js/async-request.js') }}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.13.2/date-1.3.0/fc-4.2.1/fh-3.3.1/r-2.4.0/sc-2.1.0/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="//www.amcharts.com/lib/4/lang/id_ID.js"></script>
 
     @stack('js')
     @stack('js1')

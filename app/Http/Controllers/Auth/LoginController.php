@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 
 class LoginController extends Controller
@@ -101,7 +102,9 @@ class LoginController extends Controller
                         $res->uraian_pkau_pkpt = $insert['uraian_pkau_pkpt'];
                         $res->save();
                     }
-                }
+
+                    Cookie::queue('satker', $kodeSatker->key_sort_unit, 120);
+                }                
 
                 return redirect()->intended('dashboard')
                             ->withSuccess('You have Successfully loggedin');

@@ -28,8 +28,14 @@ Route::middleware('auth')
 ->group(function(){
     Route::get('dashboard',[DashboardController::class, 'viewDashboard'])->name('dashboard');
     Route::get('pegawai',[PegawaiController::class, 'viewDashboard'])->name('pegawai');
+    Route::get('syncpeg',[PegawaiController::class, 'syncPegawai'])->name('syncpeg');
 });
 
 Route::get('stpkau/{id}', [JsonController::class,'viewStPkau']);
+Route::get('stsatker/{mulai}/{selesai}', [JsonController::class,'listStSatker']);
+Route::get('stbidang/{id}/{mulai}/{selesai}', [JsonController::class,'listStBidang']);
+Route::get('stpeg/{id}/{mulai}/{selesai}', [JsonController::class,'viewStPeg']);
+Route::get('serapbid/{id}', [JsonController::class,'viewPenyerapanBidang']);
+Route::get('serapsatker', [JsonController::class,'viewPenyerapanSatker']);
 
 
