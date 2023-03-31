@@ -188,13 +188,16 @@ function showModalBidang(ele){
       clearInterval(window['indicatorInterval'+idBid]);
     }
 
-    showIndicator();
+    
 
     // Set up data source
     $.ajax({
         type: 'get',       
         url: 'serapbid/'+idBid,
         dataType: 'json',
+        beforeSend: function() {
+            showIndicator();
+        },
         success: function(data) {
             hideIndicator();
             //alert(data);

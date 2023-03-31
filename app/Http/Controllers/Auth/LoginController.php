@@ -77,10 +77,10 @@ class LoginController extends Controller
             }            
 
             if (Auth::attempt($credentials)) {
-                $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $unit)->first();
+                $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', Auth::user()->key_sort_unit)->first();
 
                 if($kodeSatker) {
-                    $user = Http::withToken(Auth::user()->token_sima)->get('http://api-stara.bpkp.go.id/api/surat-tugas?sumber_data=pkau&kode_satker='.$kodeSatker->kode_satker);
+                    $user = Http::timeout(0)->withToken(Auth::user()->token_sima)->get('http://api-stara.bpkp.go.id/api/surat-tugas?sumber_data=pkau&kode_satker='.$kodeSatker->kode_satker);
 
                     $dataSt = $user['data'];
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Satker;
 use App\Models\Sima\SuratTugas;
-
+use App\Models\Bisma\CostSheet;
 
 class JsonController extends Controller
 {
@@ -363,6 +363,315 @@ class JsonController extends Controller
 
             return json_encode($total);
         }
-    }   
+    }
+
+    public function viewPerjadinBidang($id) 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $cso = DB::connection('dbbisma')
+                ->table('d_surattugas')
+                ->selectRaw('SUM(d_costsheet.biaya) AS outstand, d_costsheet.kdindex AS pagu_index')
+                ->join('d_costsheet', 'd_surattugas.id_st', '=', 'd_costsheet.id_st')
+                ->where('d_surattugas.is_aktif', 1)
+                ->whereIn('d_costsheet.status_cs', [1, 2, 3, 12, 4])
+                ->groupBy('d_costsheet.kdindex');
+
+            $csd = DB::connection('dbbisma')
+                ->table('d_surattugas')
+                ->selectRaw('SUM(d_costsheet.biaya) AS draft, d_costsheet.kdindex AS pagu_index')
+                ->join('d_costsheet', 'd_surattugas.id_st', '=', 'd_costsheet.id_st')
+                ->where('d_surattugas.is_aktif', 1)
+                ->where('d_costsheet.status_cs', 11)
+                ->groupBy('d_costsheet.kdindex');
+
+            $csr = DB::connection('dbbisma')
+                ->table('d_surattugas')
+                ->selectRaw('SUM(d_costsheet.biaya) AS realisasi, d_costsheet.kdindex AS pagu_index')
+                ->join('d_costsheet', 'd_surattugas.id_st', '=', 'd_costsheet.id_st')
+                ->where('d_surattugas.is_aktif', 1)
+                ->whereIn('d_costsheet.status_cs', [5, 6, 7, 8, 9])
+                ->groupBy('d_costsheet.kdindex');            
+
+            $bidang = DB::connection('dbbisma')
+                ->table('d_pagu')
+                ->selectRaw('
+                    d_pagu.kdindex as kdindex,                    
+                    d_pagu.kdkmpnen as kdkmpnen,
+                    CONCAT(d_pagu.kdkmpnen," - ",d_kmpnen.urkmpnen) as urkmpnen,
+                    d_pagu.kdskmpnen as kdskmpnen,
+                    CONCAT(d_pagu.kdskmpnen," - ",d_skmpnen.urskmpnen) as urskmpnen,
+                    d_pagu.kdakun as kdakun,
+                    CONCAT(d_pagu.kdakun," - ",t_akun.nmakun) as nmakun,
+                    SUM(d_pagu.rupiah) AS anggaran,
+                    SUM(IFNULL(cso.outstand, 0)) AS outstand,
+                    SUM(IFNULL(csd.draft, 0)) AS draft,
+                    SUM(IFNULL(csr.realisasi, 0)) AS realisasi,
+                    SUM(d_pagu.rupiah)-SUM(IFNULL(cso.outstand, 0))-SUM(IFNULL(csd.draft, 0))-SUM(IFNULL(csr.realisasi, 0)) AS sisa
+                    ')
+                ->leftJoin('d_bagipagu', 'd_pagu.kdindex', '=', 'd_bagipagu.kdindex')
+                ->leftJoin('t_unitkerja', 'd_bagipagu.unit_id', '=', 't_unitkerja.id')
+                ->join('t_akun', function ($join) {
+                    $join->on('d_pagu.kdakun', '=', 't_akun.kdakun');
+                    $join->whereIn('d_pagu.kdakun', [524111, 524113, 524114, 524119]);
+                })
+                ->join('d_soutput', function ($join) {
+                    $join->on('d_pagu.kdsoutput', '=', 'd_soutput.kdsoutput');
+                    $join->on('d_pagu.kdsatker', '=', 'd_soutput.kdsatker');
+                    $join->on('d_pagu.thang', '=', 'd_soutput.thang');
+                })
+                ->join('d_kmpnen', function ($join) {
+                    $join->on('d_pagu.kdkmpnen', '=', 'd_kmpnen.kdkmpnen');
+                    $join->on('d_pagu.kdsoutput', '=', 'd_kmpnen.kdsoutput');
+                    $join->on('d_pagu.kdsatker', '=', 'd_kmpnen.kdsatker');
+                    $join->on('d_pagu.thang', '=', 'd_kmpnen.thang');
+                })
+                ->join('d_skmpnen', function ($join) {
+                    $join->on('d_pagu.kdkmpnen', '=', 'd_skmpnen.kdkmpnen');
+                    $join->on('d_pagu.kdskmpnen', '=', 'd_skmpnen.kdskmpnen');
+                    $join->on('d_pagu.kdsatker', '=', 'd_skmpnen.kdsatker');
+                    $join->on('d_pagu.thang', '=', 'd_skmpnen.thang');
+                })                  
+                ->leftJoinSub($cso, 'cso', function ($join){
+                    $join->on('d_pagu.kdindex', '=', 'cso.pagu_index');
+                })
+                ->leftJoinSub($csd, 'csd', function ($join){
+                    $join->on('d_pagu.kdindex', '=', 'csd.pagu_index');
+                })
+                ->leftJoinSub($csr, 'csr', function ($join){
+                    $join->on('d_pagu.kdindex', '=', 'csr.pagu_index');
+                })                
+                ->where('d_bagipagu.unit_id', '=', $id)
+                ->where('d_bagipagu.thang', '=', 2023)
+                ->groupBy('d_pagu.kdindex')
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function viewStatusCsDraft($id) 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $bidang = DB::connection('dbbisma')
+                ->table('d_costsheet')
+                ->selectRaw('
+                    d_costsheet.id_cs AS no,
+                    d_costsheet.nost AS nost,
+                    d_costsheet.tglst AS tglst,
+                    d_costsheet.uraianst AS urst,
+                    d_costsheet.biaya AS biaya,
+                    CONCAT(r_statuscs.kode_status_cs/10," - ",r_statuscs.uraian_perwakilan) AS status
+                    ')
+                ->leftJoin('r_statuscs', 'd_costsheet.status_cs', '=', 'r_statuscs.id')            
+                ->where('d_costsheet.kdindex', '=', $id)
+                ->where('d_costsheet.status_cs', 11)
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function viewStatusCsOutstand($id) 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $bidang = DB::connection('dbbisma')
+                ->table('d_costsheet')
+                ->selectRaw('
+                    d_costsheet.id_cs AS no,
+                    d_costsheet.nost AS nost,
+                    d_costsheet.tglst AS tglst,
+                    d_costsheet.uraianst AS urst,
+                    d_costsheet.biaya AS biaya,
+                    CONCAT(r_statuscs.kode_status_cs/10," - ",r_statuscs.uraian_perwakilan) AS status
+                    ')
+                ->leftJoin('r_statuscs', 'd_costsheet.status_cs', '=', 'r_statuscs.id')            
+                ->where('d_costsheet.kdindex', '=', $id)
+                ->whereIn('d_costsheet.status_cs',[1, 2, 3, 12, 4])
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function viewStatusCsRealisasi($id) 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $bidang = DB::connection('dbbisma')
+                ->table('d_costsheet')
+                ->selectRaw('
+                    d_costsheet.id_cs AS no,
+                    d_costsheet.nost AS nost,
+                    d_costsheet.tglst AS tglst,
+                    d_costsheet.uraianst AS urst,
+                    d_costsheet.biaya AS biaya,
+                    CONCAT(r_statuscs.kode_status_cs/10," - ",r_statuscs.uraian_perwakilan) AS status
+                    ')
+                ->leftJoin('r_statuscs', 'd_costsheet.status_cs', '=', 'r_statuscs.id')            
+                ->where('d_costsheet.kdindex', '=', $id)
+                ->whereIn('d_costsheet.status_cs',[5, 6, 7, 8, 9])
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function viewStatusLaporan($id) 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $bidang = CostSheet::with('st')        
+                ->where('d_costsheet.id_unit', '=', $id)
+                ->groupBy('id_st')
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function viewRekapStatus() 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $bidang = DB::table('vw_rekap_status')
+                ->select(
+                    'vw_rekap_status.id_unit as id_unit',
+                    'r_unit.nama_unit as nama_unit',
+                    'vw_rekap_status.jml_7 as jml_7',
+                    'vw_rekap_status.jml_1 as jml_1'
+                )
+                ->join('r_unit','vw_rekap_status.id_unit','=','r_unit.id_unit')        
+                ->where('vw_rekap_status.kode_satker', '=', $kodeSatker->kode_satker)
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function viewStatus1Bidang($id) 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $bidang = DB::table('t_sima_st')
+                ->select(
+                    't_sima_st.id_st as id_st',
+                    't_sima_st.no_surat_tugas as no_surat_tugas',
+                    't_sima_st.tanggal_surat_tugas as tanggal_surat_tugas',
+                    't_sima_st.nama_penugasan as nama_penugasan'
+                )
+                ->leftJoin('t_laporan','t_sima_st.id_st','=','t_laporan.id_st')
+                ->where('t_sima_st.jns_tugas','=',2)        
+                ->whereNull('t_laporan.id_st')
+                ->where('t_sima_st.id_unit',$id)
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function viewStatus7Bidang($id) 
+    {
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+        
+            $bidang = DB::table('t_sima_st')
+                ->select(
+                    't_sima_st.id_st as id_st',
+                    't_sima_st.no_surat_tugas as no_surat_tugas',
+                    't_sima_st.tanggal_surat_tugas as tanggal_surat_tugas',
+                    't_sima_st.nama_penugasan as nama_penugasan',
+                    't_laporan.no_laporan as no_laporan',
+                    't_laporan.tgl_laporan as tgl_laporan'
+                )
+                ->join('t_laporan','t_sima_st.id_st','=','t_laporan.id_st')
+                ->where('t_laporan.id_status','=',7)
+                ->where('t_sima_st.id_unit',$id)
+                ->get();
+
+            return json_encode($bidang);
+
+        }
+        
+    }
+
+    public function listDlSatker() 
+    {  
+        $keySort = Cookie::get('satker');
+
+        $kodeSatker = Satker::select('key_sort_unit','kode_satker')->where('key_sort_unit', $keySort)->first();
+
+        if ($kodeSatker) {
+            $kdindex = '2023'.$kodeSatker->kode_satker;
+
+            $tugas = DB::connection('dbbisma')
+                ->table('t_pegawai_map')
+                ->selectRaw(
+                    'd_itemcs.id AS iditem,
+                    d_costsheet.id_st AS id_st,
+                    d_costsheet.nost AS task,
+                    d_costsheet.uraianst AS uraianst,
+                    d_itemcs.nama AS nama,
+                    d_itemcs.tglberangkat AS tglberangkat,
+                    d_itemcs.tglkembali AS tglkembali
+                    '
+                    )
+                ->leftJoin('d_itemcs', 't_pegawai_map.nip', '=', 'd_itemcs.nip')
+                ->leftJoin('d_costsheet', 'd_itemcs.id_cs', '=', 'd_costsheet.id_cs')
+                ->where('tglkembali', '>=', '2023-01-01')
+                ->where('t_pegawai_map.key_sort_unit','=', $kodeSatker->key_sort_unit)
+                ->orderBy('nama')            
+                ->get();
+
+            return json_encode($tugas);
+        }        
+    }      
 
 }

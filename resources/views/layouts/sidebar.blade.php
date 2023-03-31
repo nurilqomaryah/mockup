@@ -11,39 +11,46 @@
     </div>
     <li class="nav-item @if(request()->route()->uri == 'dashboard') active @endif">
         <a class="nav-link" href="{{ route('dashboard') }}">
-            <i class="fas fa-fw fa-home"></i>
-            <span>Dashboard</span>
+            <i class="fa-solid fa-house"></i>
+            <span style="font-size: medium;">Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item
+    {{ Request::is('keuangan') ? 'active' : null }}
+    ">
+        <a class="nav-link" href="{{ route('keuangan') }}">
+            <i class="fa-solid fa-rupiah-sign"></i>
+            <span style="font-size: medium;">Keuangan</span>
         </a>
     </li>
     <li class="nav-item
     {{ Request::is('pegawai') ? 'active' : null }}
     ">
         <a class="nav-link" href="{{ route('pegawai') }}">
-            <i class="fas fa-fw fa-book"></i>
-            <span>Pegawai</span>
+            <i class="fa-solid fa-user-group"></i>
+            <span style="font-size: medium;">Pegawai</span>
         </a>
     </li>
+    @if(Auth::user()->key_sort_unit == "07001500002000099")
+    <li class="nav-item
+    {{ Request::is('laporan') ? 'active' : null }}
+    ">
+        <a class="nav-link" href="{{ route('laporan') }}">
+            <i class="fa-solid fa-file-signature"></i>
+            <span style="font-size: medium;">Laporan</span>
+        </a>
+    </li>
+    @endif
     @if(Auth::user()->role_id == 2)
     <li class="nav-item
     {{ Request::is('syncpeg') ? 'active' : null }}
     ">
         <a class="nav-link" href="{{ route('syncpeg') }}">
-            <i class="fas fa-fw fa-book"></i>
-            <span>Sync Pegawai</span>
+            <i class="fa-solid fa-rotate"></i>
+            <span style="font-size: medium;">Sync Data</span>
         </a>
     </li>
     @endif
-    <!-- <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-book"></i>
-            <span>Keuangan</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-book"></i>
-            <span>Laporan</span>
-        </a>
-    </li> -->
+
 </ul>
 <!-- End of Sidebar -->

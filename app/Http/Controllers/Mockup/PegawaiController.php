@@ -22,7 +22,7 @@ class PegawaiController extends Controller
         $now = Carbon::now();
 
         if($kodeSatker) {
-            $user = Http::withToken(Auth::user()->token_sima)->get('http://api-stara.bpkp.go.id/api/surat-tugas/all?sumber_data=pkau&kode_satker='.$kodeSatker->kode_satker);
+            $user = Http::timeout(0)->withToken(Auth::user()->token_sima)->get('http://api-stara.bpkp.go.id/api/surat-tugas/all?sumber_data=pkau&kode_satker='.$kodeSatker->kode_satker);
 
             $dataSt = $user['data'];
 

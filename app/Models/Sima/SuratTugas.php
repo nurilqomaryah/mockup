@@ -4,6 +4,7 @@ namespace App\Models\Sima;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Bisma\CostSheet;
 
 class SuratTugas extends Model
 {
@@ -35,5 +36,13 @@ class SuratTugas extends Model
         'kode_pkau_pkpt',
         'uraian_pkau_pkpt'
     ];
+
+    /**
+     * Get the CS for the ST.
+     */
+    public function cs()
+    {
+        return $this->hasMany(CostSheet::class, 'id_st', 'id_st');
+    }
 }
 
