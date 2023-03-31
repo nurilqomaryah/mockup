@@ -103,6 +103,29 @@ class LoginController extends Controller
                         $res->save();
                     }
 
+                    $user2 = Http::timeout(0)->withToken(Auth::user()->token_sima)->get('http://api-stara.bpkp.go.id/api/surat-tugas?sumber_data=pkpt&kode_satker='.$kodeSatker->kode_satker);
+
+                    $dataSt2 = $user2['data'];
+
+                    foreach ($dataSt2 as $insert2) {
+                        $res2 = SuratTugas::firstOrNew(['id_st' => $insert2['id_st']]);
+                        $res2->sumber_data = $insert2['sumber_data'];
+                        $res2->status_st = $insert2['status_st'];
+                        $res2->status_workflow = $insert2['status_workflow'];
+                        $res2->no_surat_tugas = $insert2['no_surat_tugas'];
+                        $res2->tanggal_surat_tugas = $insert2['tanggal_surat_tugas'];
+                        $res2->nama_penugasan = $insert2['nama_penugasan'];
+                        $res2->tanggal_mulai = $insert2['tanggal_mulai'];
+                        $res2->tanggal_selesai = $insert2['tanggal_selesai'];
+                        $res2->sumber_dana_id = $insert2['sumber_dana_id'];
+                        $res2->pembebanan = $insert2['pembebanan'];
+                        $res2->ro_kode = $insert2['ro_kode'];
+                        $res2->kdsatker = $insert2['kdsatker'];
+                        $res2->kode_pkau_pkpt = $insert2['kode_pkau_pkpt'];
+                        $res2->uraian_pkau_pkpt = $insert2['uraian_pkau_pkpt'];
+                        $res2->save();
+                    }
+
                     Cookie::queue('satker', $kodeSatker->key_sort_unit, 120);
                 }                
 

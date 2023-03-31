@@ -22,6 +22,14 @@ class DashboardController extends Controller
                 ->groupBy('kode_pkau_pkpt')
                 ->orderBy('kode_pkau_pkpt')
                 ->where('kdsatker', $kodeSatker->kode_satker)
+                ->where('sumber_data', 'PKAU')
+                ->get();
+
+            $listPkpt = SuratTugas::select('kode_pkau_pkpt','uraian_pkau_pkpt',DB::raw('count(id_st) as total_st'))
+                ->groupBy('kode_pkau_pkpt')
+                ->orderBy('kode_pkau_pkpt')
+                ->where('kdsatker', $kodeSatker->kode_satker)
+                ->where('sumber_data', 'PKPT')
                 ->get();
 
             $csr = DB::connection('dbbisma')
@@ -92,7 +100,7 @@ class DashboardController extends Controller
                 ->get();
 
             return View::make('dashboard.dash')
-                ->with(compact('listPkau','bidang','total'));
+                ->with(compact('listPkau','listPkpt','bidang','total'));
         }
         
     } 

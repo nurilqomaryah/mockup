@@ -45,6 +45,30 @@ class PegawaiController extends Controller
                 }
             }
 
+            $user2 = Http::timeout(0)->withToken(Auth::user()->token_sima)->get('http://api-stara.bpkp.go.id/api/surat-tugas/all?sumber_data=pkpt&kode_satker='.$kodeSatker->kode_satker);
+
+            $dataSt2 = $user2['data'];
+
+            foreach ($dataSt2 as $insert2) {
+
+                $dataDetail2 = $insert2['personil'];
+
+                foreach ($dataDetail2 as $insdtl2) {
+                    $res3 = SuratTugasTim::firstOrNew(['id_tim' => $insdtl2['id_tim']]);
+                    $res3->id_st = $insdtl2['id_st'];
+                    $res3->nip = $insdtl2['nip'];
+                    $res3->nama = $insdtl2['nama'];
+                    $res3->golongan = $insdtl2['golongan'];
+                    $res3->peran = $insdtl2['peran'];
+                    $res3->jabatan = $insdtl2['jabatan'];
+                    $res3->urut = $insdtl2['urut'];
+                    $res3->reff_bisma_unit_id = $insdtl2['reff_bisma_unit_id'];
+                    $res3->kode_unit = $insdtl2['kode_unit'];
+                    $res3->save();
+                }
+            }
+
+
             $listBidang = DB::connection('dbbisma')
                 ->table('t_unitkerja')
                 ->select('id','nama_unit')

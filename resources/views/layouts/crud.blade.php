@@ -4,7 +4,7 @@
         <link rel="icon" type="image/x-icon" href="{{asset('images/BPKP_Logo.png')}}">
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/BPKP_Logo.png')}}">
         <meta property="og:title" content="MOCKUP">
-        <meta property="og:description" content="Monitoring Kinerja dan Keuangan PKAU">
+        <meta property="og:description" content="Monitoring Kinerja dan Keuangan PKAU dan PKPT">
         <title>MOCKUP</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.13.2/date-1.3.0/fc-4.2.1/fh-3.3.1/r-2.4.0/sc-2.1.0/datatables.min.css"/>

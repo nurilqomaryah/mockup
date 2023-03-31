@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-8 offset-4" style="margin-top: 12em; margin-right: 7em; background-color: white;">
             <h2 style="text-align: center;"><span class="judul orange">MO</span><span class="judul blue">NITORING </span><span  class="judul orange">C</span><span class="judul blue">APAIAN</span> </h2>
-            <h2 style="text-align: center;"><span class="judul orange">K</span><span class="judul blue">INERJA DAN KE</span><span class="judul orange">U</span><span class="judul blue">ANGAN </span><span class="judul orange">P</span><span class="judul blue">KAU</span> </h2>
+            <h2 style="text-align: center;"><span class="judul orange">K</span><span class="judul blue">INERJA DAN KE</span><span class="judul orange">U</span><span class="judul blue">ANGAN </span><span class="judul orange">P</span><span class="judul blue">KAU/PKPT</span> </h2>
             <h2 style="text-align: center;"><span class="judul blue">(</span><span class="judul orange">MOCKUP</span><span class="judul blue">)</span> </h2>
             <div class="card" style="margin-top: 3em;">
                 <div class="card-header text-center">{{ __('Silakan melakukan Login terlebih dahulu') }}</div>

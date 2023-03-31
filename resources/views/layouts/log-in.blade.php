@@ -6,12 +6,12 @@
     <link rel="icon" type="image/x-icon" href="{{asset('images/BPKP_Logo.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/BPKP_Logo.png')}}">
     <meta property="og:title" content="MOCKUP">
-    <meta property="og:description" content="Monitoring Kinerja dan Keuangan PKAU">
+    <meta property="og:description" content="Monitoring Kinerja dan Keuangan PKAU/PKPT">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Monitoring Kinerja dan Keuangan PKAU</title>
+    <title>Monitoring Kinerja dan Keuangan PKAU/PKPT</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
