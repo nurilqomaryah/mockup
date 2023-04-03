@@ -347,11 +347,20 @@ chart.events.on("datavalidated", function(ev) {
   });
 });
 
-chart2.events.on("datavalidated", function(ev) {
+chart2.events.on("datavalidated", function(ev) {    
+    var today = new Date();
+    var todaydate = today.getDate();
+    var todaymonth = today.getMonth();
+
+    var last = new Date(today.getTime());
+    last.setDate(today.getDate() - 10);
+    var lastdate = last.getDate();
+    var lastmonth = last.getMonth();
+
     categoryAxisg.zoomToIndexes(1, 9, false, true);
     dateAxisg.zoomToDates(
-        new Date(2023, 2, 1),
-        new Date(2023, 2, 11)
+        new Date(2023, lastmonth, lastdate),
+        new Date(2023, todaymonth, todaydate)
     );
 });
 
