@@ -11,13 +11,13 @@
                     @foreach($bidang as $item)
                     <div class="anggaran col-xl-3 col-md-6 mb-4 text-center" data-toggle="modal" data-target="#modalTable{{$item->id}}" data-id="{{$item->id}}" onclick="showModalBidang(this)">
                         <h6>{{ $item->nama_unit }}</h6>
-                        <h1 class="text-blue" style="padding-top: 0px !important; margin-bottom: 5px;">{{ number_format($item->realisasi/$item->anggaran,2,',','.') }} %</h1>
+                        <h1 class="text-blue" style="padding-top: 0px !important; margin-bottom: 5px;">{{ number_format($item->realisasi/$item->anggaran*100,2,',','.') }} %</h1>
                     </div>
                     @endforeach  
                     @foreach($total as $item)
                     <div class="anggaran col-xl-3 col-md-6 mb-4 text-center" data-toggle="modal" data-target="#modalTable{{$item->kdsatker}}" onclick="showModalSatker(this)">
                         <h6>Total Satker</h6>
-                        <h1 class="text-blue" style="padding-top: 0px !important; margin-bottom: 5px;">{{ number_format($item->realisasi/$item->anggaran,2,',','.') }} %</h1>
+                        <h1 class="text-blue" style="padding-top: 0px !important; margin-bottom: 5px;">{{ number_format($item->realisasi/$item->anggaran*100,2,',','.') }} %</h1>
                     </div>
                     @endforeach                                      
                 </div>
